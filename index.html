@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ace Alps Ltd. | Premium Organic Spices</title>
+    <meta name="description" content="Nature's finest spices, sourced from trusted farms, crafted for purity and excellence.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <header class="navbar">
+        <nav>
+            <a href="#">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#products">Products</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero glass-hero">
+            <div class="hero-bg-layer"></div>
+            <div class="hero-content">
+                <img src="asset/logo2.png" alt="Ace Alps Hero Logo" class="hero-logo">
+                <h1>Nature's Finest</h1>
+                <p>Sourced from trusted farms, crafted for purity and excellence.</p>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="about-section">
+            <div class="about-bg-layer"></div>
+            <div class="about-content glass-panel-about">
+                <h1 class="about-title">Our Story</h1>
+                <p class="about-text">Ace Alps Ltd. brings you nature’s finest, carefully sourced from trusted farms and crafted for purity, flavour, and quality.</p>
+                <p class="about-text">From handpicked spices to nourishing blends and convenient frozen foods, every product reflects our commitment to authenticity and excellence—delivering rich taste in every bite.</p>
+                <div class="about-highlights">
+                    <div class="highlight">
+                        <h3>Purity</h3>
+                        <p>100% natural</p>
+                    </div>
+                    <div class="highlight">
+                        <h3>Quality</h3>
+                        <p>Trusted farms</p>
+                    </div>
+                    <div class="highlight">
+                        <h3>Authenticity</h3>
+                        <p>Rich taste</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Suite Section with Theme Switcher -->
+        <section id="products" class="product-suite" data-theme="default">
+            
+            <div class="product-grid">
+                <!-- Cardamom -->
+                <div class="product-card" data-target-theme="cardamom">
+                    <div class="card-inner">
+                        <div class="card-side card-front glass-panel">
+                            <h2>Cardamom</h2>
+                            <h3 class="subtitle">Queen of Spices</h3>
+                            <div class="product-story">
+                                <p>Sourced from select farms where climate and soil create pods with naturally rich aroma and vibrant flavor. Brings freshness and purity to every dish.</p>
+                            </div>
+                        </div>
+                        <div class="card-side card-back">
+                            <img src="asset/card.jpeg" alt="Cardamom - Queen of Spices" class="product-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Black Pepper -->
+                <div class="product-card" data-target-theme="pepper">
+                    <div class="card-inner">
+                        <div class="card-side card-front glass-panel">
+                            <h2>Black Pepper</h2>
+                            <h3 class="subtitle">Black Gold</h3>
+                            <div class="product-story">
+                                <p>Treasured for centuries for bold flavor and natural heat. Chosen for exceptional quality, adding depth and character to every dish.</p>
+                            </div>
+                        </div>
+                        <div class="card-side card-back">
+                            <img src="asset/blackpep.jpeg" alt="Black Pepper - Black Gold" class="product-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dry Fruit Mix in Honey -->
+                <div class="product-card" data-target-theme="honey">
+                    <div class="card-inner">
+                        <div class="card-side card-front glass-panel">
+                            <h2>Dry Fruit Mix</h2>
+                            <h3 class="subtitle">In Honey</h3>
+                            <div class="product-story">
+                                <p>Nourishing premium blends in artisanal glass jars.</p>
+                            </div>
+                        </div>
+                        <div class="card-side card-back">
+                            <img src="honey_nuts.png" alt="Dry Fruit Mix in Honey" class="product-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="contact-container">
+                <h1 class="contact-title">Get in Touch</h1>
+                <p class="contact-subtitle">We would love to hear from you. Reach out to discuss our organic products, wholesale inquiries, or general questions.</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Headquarters</h3>
+                        <p>123 Alpine Way, Pristine Valley<br>Nature's Peak, NV 80921</p>
+                        
+                        <h3>Contact Info</h3>
+                        <p>Email: hello@acealps.com<br>Phone: +1 (800) 555-ALPS</p>
+                        
+                        <h3>Working Hours</h3>
+                        <p>Monday - Friday: 9AM - 6PM<br>Weekend: Closed</p>
+                    </div>
+                    
+                    <div class="contact-form-container">
+                        <form class="contact-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('Demo message sent successfully!');">
+                            <div class="input-group">
+                                <input type="text" id="name" name="name" required placeholder="Your Name">
+                            </div>
+                            <div class="input-group">
+                                <input type="email" id="email" name="email" required placeholder="Your Email">
+                            </div>
+                            <div class="input-group">
+                                <textarea id="message" name="message" rows="5" required placeholder="Your Message"></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn" style="appearance: none;">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
