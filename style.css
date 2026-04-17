@@ -300,12 +300,7 @@ nav a:hover {
     margin-top: 1rem;
 }
 
-/* Responsive */
-@media(max-width: 768px) {
-    .product-card {
-        perspective: none;
-    }
-}
+/* Responsive section merged sequentially at EOF */
 
 /* About Us Section */
 .about-section {
@@ -419,14 +414,7 @@ nav a:hover {
     color: #dcdcdc;
 }
 
-@media(max-width: 768px) {
-    .glass-panel-about {
-        padding: 3rem 2rem;
-    }
-    .about-title { font-size: 3rem; }
-    .about-text { font-size: 1.1rem; }
-    .about-highlights { flex-direction: column; }
-}
+
 /* Contact Section */
 .contact-section {
     min-height: 80vh;
@@ -547,11 +535,65 @@ nav a:hover {
     transform: translateY(-3px);
 }
 
+/* Unified Mobile Responsiveness */
 @media(max-width: 768px) {
+    /* Navbar stack cleanly */
+    .navbar {
+        padding: 1.5rem 1rem;
+        flex-wrap: wrap;
+    }
+    nav a {
+        margin: 0.5rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    /* Shrink huge hero texts/logos */
+    .hero h1 {
+        font-size: 3.2rem;
+    }
+    .hero p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    .hero-logo {
+        max-width: 70%;
+    }
+
+    /* Maintain perfect 3D Perspective for mobile tapping logic */
+    .product-card {
+        perspective: 1200px;
+    }
+
+    /* Compress massive About Us padding */
+    .about-section {
+        padding: 6rem 1rem 3rem 1rem;
+    }
+    .glass-panel-about {
+        padding: 3rem 1.5rem;
+    }
+    .about-title { 
+        font-size: 2.8rem; 
+    }
+    .about-text { 
+        font-size: 1.05rem; 
+    }
+    .about-highlights { 
+        flex-direction: column; 
+        gap: 1.5rem;
+    }
+
+    /* Collapse Contact Grid */
+    .contact-section {
+        padding: 6rem 1rem 3rem 1rem;
+    }
     .contact-grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
     }
     .contact-title {
         font-size: 2.5rem;
+    }
+    .contact-info {
+        padding: 2rem;
     }
 }
