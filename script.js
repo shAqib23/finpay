@@ -4,6 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll('.product-card');
 
     cards.forEach(card => {
+        // Explicity toggle flip class for consistent mobile tapping
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
+
         card.addEventListener('mouseenter', () => {
             const theme = card.getAttribute('data-target-theme');
             productSuite.setAttribute('data-theme', theme);
@@ -11,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         card.addEventListener('mouseleave', () => {
             productSuite.setAttribute('data-theme', 'default');
+            card.classList.remove('flipped'); // Safety reset
         });
     });
 
