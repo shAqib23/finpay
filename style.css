@@ -415,33 +415,30 @@ nav a:hover {
     color: #dcdcdc;
 }
 
-/* Heritage Frozen Collection */
-.frozen-collection {
-    padding: 8rem 2rem;
-    background-color: var(--bg-color); /* inherently fades like product suite */
-    text-align: center;
+/* Heritage Frozen Collection (Two Halves Split) */
+.frozen-collection-split {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--bg-color); /* Matches underlying transition */
+    flex-wrap: wrap; /* Allows stacking naturally on mobile */
 }
 
-.frozen-title {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
+/* Left Half: Confirmed Dual-Showcase */
+.frozen-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8rem 4rem;
+    background-color: transparent; 
 }
 
-.frozen-subtitle {
-    margin: 0 auto 4rem auto;
-    font-size: 1.2rem;
-    color: var(--text-sec);
-    line-height: 1.6;
-    max-width: 800px;
-}
-
-.frozen-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-    max-width: 1400px;
-    margin: 0 auto;
+.dual-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    max-width: 500px;
+    width: 100%;
 }
 
 .frozen-card {
@@ -451,28 +448,27 @@ nav a:hover {
 
 .glass-panel-frozen {
     background: rgba(255, 255, 255, 0.05); 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(0, 0, 0, 0.08); /* Organic minimal edge */
     border-radius: 20px;
     overflow: hidden;
     color: var(--text-primary);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
     display: flex;
     flex-direction: column;
     transform-style: preserve-3d;
-    transition: box-shadow 0.6s ease-out, border-color 0.6s ease-out;
+    transition: transform 0.6s ease-out, box-shadow 0.6s ease-out;
 }
 
-.frozen-card:hover .glass-panel-frozen,
-.frozen-card.flipped .glass-panel-frozen {
-    border-color: #81D4FA; 
-    box-shadow: 0 20px 60px rgba(129, 212, 250, 0.15);
+.frozen-card:hover .glass-panel-frozen {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.12);
 }
 
 .frozen-img-container {
     width: 100%;
-    height: 250px;
+    height: 280px;
     overflow: hidden;
 }
 
@@ -480,67 +476,143 @@ nav a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(100%) contrast(1.1); /* 'Coming Soon' gray */
-    transition: filter 0.6s ease-in-out, transform 0.6s ease-out;
+    filter: grayscale(100%) contrast(1.1);
+    transition: transform 0.8s ease-out, filter 0.8s ease-in-out;
 }
 
 .frozen-card:hover .frozen-img,
 .frozen-card.flipped .frozen-img {
-    filter: grayscale(0%) contrast(1); /* Full vibrant color pop natively */
-    transform: scale(1.08); 
+    filter: grayscale(0%) contrast(1);
+    transform: scale(1.05); 
 }
 
 .frozen-info {
-    padding: 2.5rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+    padding: 2.5rem 2rem;
+    text-align: center;
 }
 
 .frozen-info h2 {
     font-size: 1.8rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     color: var(--text-primary);
 }
 
 .frozen-info p {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--text-sec);
     line-height: 1.6;
+}
+
+/* Right Half: Strategic Future Teaser */
+.frozen-right {
+    flex: 1;
+    background-color: #1A237E; /* Deep Indigo specified */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8rem 4rem;
+    color: #FFFDE7; /* High contrast cream */
+    text-align: center;
+    overflow: hidden;
+}
+
+.future-teaser-content {
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+}
+
+.future-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
     margin-bottom: 2rem;
-    flex-grow: 1;
+    line-height: 1.2;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
-.notify-btn {
-    align-self: center;
-    background: transparent;
-    color: #81D4FA; /* Explicit specific cool-blue accent per instructions */
-    border: 2px solid #81D4FA;
-    padding: 0.8rem 2.5rem;
-    border-radius: 30px;
+.future-text {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    opacity: 0; /* Hidden by default */
-    transform: translateY(15px);
-    transition: all 0.6s ease-out;
+    font-size: 1.25rem;
+    line-height: 1.8;
+    margin-bottom: 3.5rem;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
 }
 
-.notify-btn span {
+/* The Glowing CTA Interaction */
+.notify-btn-glow {
+    background: transparent;
+    color: #FFFDE7;
+    border: 1px solid rgba(255, 253, 231, 0.4);
+    padding: 1.2rem 3.5rem;
+    border-radius: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    cursor: pointer;
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0); /* Invisible initial state */
+    transition: all 0.8s ease-in-out;
+}
+
+.notify-btn-glow span {
     margin-left: 8px;
 }
 
-.frozen-card:hover .notify-btn,
-.frozen-card.flipped .notify-btn {
-    opacity: 1;
-    transform: translateY(0); /* Pop smoothly into view */
+.notify-btn-glow:hover {
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.05); 
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.4);
 }
 
-.notify-btn:hover {
-    background: #81D4FA;
-    color: #1a1a1a;
+/* Advanced CSS Cold Steam Animations */
+.cold-steam-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.steam {
+    position: absolute;
+    bottom: -150px;
+    background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    filter: blur(25px);
+    animation: slow-rise 15s infinite linear;
+}
+
+/* Organic random distribution */
+.particle-1 { width: 350px; height: 350px; left: 10%; animation-duration: 22s; animation-delay: 0s; }
+.particle-2 { width: 500px; height: 500px; left: 50%; animation-duration: 28s; animation-delay: 6s; }
+.particle-3 { width: 300px; height: 300px; left: 80%; animation-duration: 18s; animation-delay: 2s; }
+.particle-4 { width: 400px; height: 400px; left: 35%; animation-duration: 25s; animation-delay: 12s; }
+
+@keyframes slow-rise {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    20% { opacity: 0.6; }
+    80% { opacity: 0.3; }
+    100% { transform: translateY(-130vh) scale(1.6); opacity: 0; }
+}
+
+@media(max-width: 900px) {
+    .frozen-collection-split {
+        flex-direction: column;
+    }
+    .frozen-left, .frozen-right {
+        padding: 4rem 2rem;
+    }
+    .future-headline {
+        font-size: 3.2rem;
+    }
+    .future-text {
+        font-size: 1.1rem;
+    }
 }
 
 .contact-section {
