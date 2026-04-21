@@ -415,46 +415,54 @@ nav a:hover {
     color: #dcdcdc;
 }
 
-/* Heritage Frozen Collection (Two Halves Split) */
-.frozen-collection-split {
-    display: flex;
+/* Heritage Frozen Collection (Stacked) */
+.frozen-collection {
+    position: relative;
+    padding: 8rem 2rem;
     min-height: 100vh;
-    background-color: var(--bg-color); /* Matches underlying transition */
-    flex-wrap: wrap; /* Allows stacking naturally on mobile */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(180deg, var(--bg-color) 0%, #1A237E 100%);
+    overflow: hidden;
 }
 
-/* Left Half: Confirmed Dual-Showcase */
-.frozen-left {
-    flex: 1;
+/* Top Half: Confirmed Dual-Showcase */
+.frozen-showcase-top {
+    position: relative;
+    z-index: 10;
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 8rem 4rem;
-    background-color: transparent; 
+    margin-bottom: 8rem;
 }
 
 .dual-showcase {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 4rem;
-    max-width: 500px;
     width: 100%;
+    max-width: 1200px;
 }
 
 .frozen-card {
     perspective: 1200px;
     cursor: pointer;
+    flex: 1;
+    min-width: 320px;
+    max-width: 500px;
 }
 
 .glass-panel-frozen {
     background: rgba(255, 255, 255, 0.05); 
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(0, 0, 0, 0.08); /* Organic minimal edge */
+    border: 1px solid rgba(255, 255, 255, 0.1); 
     border-radius: 20px;
     overflow: hidden;
     color: var(--text-primary);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
     transform-style: preserve-3d;
@@ -463,12 +471,12 @@ nav a:hover {
 
 .frozen-card:hover .glass-panel-frozen {
     transform: translateY(-8px);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.2);
 }
 
 .frozen-img-container {
     width: 100%;
-    height: 280px;
+    height: 380px; /* Taller on flat layout to give photos room */
     overflow: hidden;
 }
 
@@ -489,6 +497,7 @@ nav a:hover {
 .frozen-info {
     padding: 2.5rem 2rem;
     text-align: center;
+    background: rgba(0, 0, 0, 0.2); /* Deepen contrast strictly for lower text box */
 }
 
 .frozen-info h2 {
@@ -503,24 +512,17 @@ nav a:hover {
     line-height: 1.6;
 }
 
-/* Right Half: Strategic Future Teaser */
-.frozen-right {
-    flex: 1;
-    background-color: #1A237E; /* Deep Indigo specified */
+/* Bottom Half: Strategic Future Teaser */
+.frozen-teaser-bottom {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 8rem 4rem;
-    color: #FFFDE7; /* High contrast cream */
+    z-index: 10;
+    max-width: 800px;
     text-align: center;
-    overflow: hidden;
+    color: #FFFDE7; /* High contrast cream */
 }
 
 .future-teaser-content {
     position: relative;
-    z-index: 10;
-    max-width: 600px;
 }
 
 .future-headline {
@@ -553,7 +555,7 @@ nav a:hover {
     text-transform: uppercase;
     letter-spacing: 3px;
     cursor: pointer;
-    box-shadow: 0 0 0 rgba(255, 255, 255, 0); /* Invisible initial state */
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0); 
     transition: all 0.8s ease-in-out;
 }
 
@@ -581,7 +583,7 @@ nav a:hover {
 .steam {
     position: absolute;
     bottom: -150px;
-    background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 70%);
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 70%); /* softer steam on dark bg */
     border-radius: 50%;
     filter: blur(25px);
     animation: slow-rise 15s infinite linear;
@@ -595,23 +597,20 @@ nav a:hover {
 
 @keyframes slow-rise {
     0% { transform: translateY(0) scale(1); opacity: 0; }
-    20% { opacity: 0.6; }
-    80% { opacity: 0.3; }
+    20% { opacity: 0.5; }
+    80% { opacity: 0.2; }
     100% { transform: translateY(-130vh) scale(1.6); opacity: 0; }
 }
 
 @media(max-width: 900px) {
-    .frozen-collection-split {
-        flex-direction: column;
-    }
-    .frozen-left, .frozen-right {
-        padding: 4rem 2rem;
-    }
     .future-headline {
         font-size: 3.2rem;
     }
     .future-text {
         font-size: 1.1rem;
+    }
+    .dual-showcase {
+        gap: 2rem;
     }
 }
 
