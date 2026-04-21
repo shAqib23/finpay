@@ -9,14 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
             card.setAttribute('data-interacted', 'true'); // Flag manual touch override
             card.classList.toggle('flipped');
         });
-
-        card.addEventListener('mouseenter', () => {
-            const theme = card.getAttribute('data-target-theme');
-            productSuite.setAttribute('data-theme', theme);
-        });
-
         card.addEventListener('mouseleave', () => {
-            productSuite.setAttribute('data-theme', 'default');
             card.classList.remove('flipped'); // Safety reset
         });
     });

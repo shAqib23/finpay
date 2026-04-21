@@ -173,16 +173,16 @@ nav a:hover {
     min-height: 100vh;
     background: url('asset/frozen_bg.png') no-repeat center center/cover;
     background-attachment: fixed;
-    transition: color 0.8s ease-in-out;
+    color: var(--text-primary);
+    overflow: hidden;
 }
 
-/* Theme Mask Engine */
+/* Identical cinematic darkening mask mapped exactly across sections */
 .product-suite::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    transition: background-color 0.8s ease-in-out;
-    opacity: 0.85; /* Allows the cinematic slate texture to continuously bleed through */
+    background: rgba(17, 17, 17, 0.4); 
     z-index: 0;
 }
 
@@ -190,19 +190,6 @@ nav a:hover {
     position: relative;
     z-index: 10;
 }
-
-/* Smooth background morph based on theme data-theme attributes mapped to JS */
-.product-suite[data-theme="default"]::before { background-color: var(--bg-color); }
-.product-suite[data-theme="default"] { color: var(--text-primary); }
-
-.product-suite[data-theme="cardamom"]::before { background-color: var(--cardamom-bg); }
-.product-suite[data-theme="cardamom"] { color: var(--cardamom-text); }
-
-.product-suite[data-theme="pepper"]::before { background-color: var(--pepper-bg); }
-.product-suite[data-theme="pepper"] { color: var(--pepper-text); }
-
-.product-suite[data-theme="honey"]::before { background-color: var(--honey-bg); }
-.product-suite[data-theme="honey"] { color: var(--honey-text); }
 
 /* Glass Panels */
 .product-grid {
@@ -438,13 +425,12 @@ nav a:hover {
     overflow: hidden;
 }
 
-/* Intelligent Gradient Fade */
+/* Frozen ambient fade removed to flawlessly match the Spices section structure exactly */
 .frozen-collection::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    /* Softly darkens to emphasize text without severing visual scroll continuity */
-    background: linear-gradient(180deg, rgba(17, 17, 17, 0.4) 0%, rgba(17, 17, 17, 0.5) 40%, rgba(17, 17, 17, 0.8) 100%);
+    background: rgba(17, 17, 17, 0.4);
     z-index: 0;
 }
 
