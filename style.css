@@ -511,12 +511,12 @@ nav a:hover {
 .frozen-info h2 {
     font-size: 1.8rem;
     margin-bottom: 0.8rem;
-    color: var(--text-primary);
+    color: #f0e6d2; /* Explicitly forced white matching the upper array */
 }
 
 .frozen-info p {
     font-size: 1rem;
-    color: var(--text-sec);
+    color: rgba(255, 255, 255, 0.8); /* Ensures paragraphs are bright but distinct from H2 */
     line-height: 1.6;
 }
 
