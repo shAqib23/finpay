@@ -833,8 +833,9 @@ main {
 
     /* ── NAVBAR MOBILE ── */
     .navbar {
-        padding: 0.6rem 0.6rem 0.6rem 58px;
+        padding: 0.55rem 0.6rem 0.55rem 62px; /* extra left space for logo */
         justify-content: flex-start;
+        align-items: center;
         flex-wrap: nowrap;
         gap: 0;
         background: rgba(255, 255, 255, 0.18);
@@ -864,7 +865,6 @@ main {
     }
 
     /* ── MAIN LOGO MOBILE ── */
-    /* Hero state: full-width centered over valley */
     #MainLogo {
         width: 90vw;
         top: 50%;
@@ -872,14 +872,20 @@ main {
         transform: translate(-50%, -50%);
     }
 
-    /* Scrolled: slide into navbar, left of HOME */
+    /* Scrolled: logo sits above the navbar blur, left of HOME */
     #MainLogo.scrolled {
-        width: 42px;
-        top: 7px;
-        left: 8px;
+        width: 44px;
+        top: 6px;
+        left: 10px;
         transform: translate(0, 0);
         opacity: 1;
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        z-index: 101; /* above navbar (100) so it renders over the blur */
+        filter: none;
+    }
+
+    /* Disable CSS :hover flip on mobile — use .flipped class only via JS tap */
+    .product-card:hover .card-inner {
+        transform: none;
     }
 
     /* Shrink huge hero texts/logos */

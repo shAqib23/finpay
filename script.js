@@ -21,11 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     cards.forEach(card => {
-        // Tap to flip (works on all devices)
+        // Tap toggles flip on all devices
         card.addEventListener('click', () => {
             card.classList.toggle('flipped');
         });
-        // Only reset on mouseleave on desktop (hover)
+        // Desktop only: hovering away resets the card
         if (!isMobile) {
             card.addEventListener('mouseleave', () => {
                 card.classList.remove('flipped');
@@ -33,28 +33,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 2. Mobile Auto-Flip Intersection Observer
-    // Disabled — user taps cards manually on mobile
-    if (false) {
+    // 2. Mobile: auto-flip once when card scrolls into view, then user controls it
+    if (isMobile) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // Only auto-flip if the user hasn't explicitly tapped it yet
-                if (!entry.target.hasAttribute('data-interacted')) {
-                    if (entry.isIntersecting) {
-                        // Dynamically flip to reveal the back when scrolled into focus
-                        entry.target.classList.add('flipped');
-                    } else {
-                        // Reset it quietly when scrolling away
+                // Auto-flip once when it enters the viewport for the first time
+                if (entry.isIntersecting && !entry.target.hasAttribute('data-auto-flipped')) {
+                    entry.target.classList.add('flipped');
+                    entry.target.setAttribute('data-auto-flipped', 'true');
+                    // Auto-flip back after 1.2s so user sees the reveal then gets front again
+                    setTimeout(() => {
                         entry.target.classList.remove('flipped');
-                    }
+                    }, 1200);
                 }
             });
-        }, { threshold: 0.6 }); // Trigger exactly when 60% of the card crosses into the screen
+        }, { threshold: 0.55 });
 
         cards.forEach(card => observer.observe(card));
     }
 
     // 1b. Frozen Cards 3D Tilt Hover Logic
+
     const frozenCards = document.querySelectorAll('.frozen-card-inner');
     frozenCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
