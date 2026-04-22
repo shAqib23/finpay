@@ -833,11 +833,11 @@ main {
 
     /* ── NAVBAR MOBILE ── */
     .navbar {
-        padding: 0.75rem 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
+        padding: 0.6rem 0.6rem 0.6rem 58px;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
         gap: 0;
-        background: rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.18);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -845,33 +845,41 @@ main {
 
     nav {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.1rem;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
         width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
     }
 
+    nav::-webkit-scrollbar { display: none; }
+
     nav a {
-        margin: 0.3rem 0.5rem;
-        font-size: 0.65rem;
-        letter-spacing: 1.5px;
+        margin: 0 0.45rem;
+        font-size: 0.62rem;
+        letter-spacing: 1.4px;
+        white-space: nowrap;
     }
 
     /* ── MAIN LOGO MOBILE ── */
-    /* On mobile: make logo fit the viewport centered over the bright area */
+    /* Hero state: full-width centered over valley */
     #MainLogo {
-        width: 90vw;          /* fills nearly full width */
-        top: 50%;             /* center vertically in viewport */
-        left: 50%;            /* center horizontally */
+        width: 90vw;
+        top: 50%;
+        left: 50%;
         transform: translate(-50%, -50%);
     }
 
-    /* After scroll: compact pinned logo top-left */
+    /* Scrolled: slide into navbar, left of HOME */
     #MainLogo.scrolled {
-        width: 90px;
-        top: 14px;
-        left: 14px;
+        width: 42px;
+        top: 7px;
+        left: 8px;
         transform: translate(0, 0);
+        opacity: 1;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     }
 
     /* Shrink huge hero texts/logos */

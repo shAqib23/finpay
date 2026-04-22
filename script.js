@@ -18,19 +18,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const productSuite = document.getElementById('products');
     const cards = document.querySelectorAll('.product-card');
 
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
     cards.forEach(card => {
-        // Explicity toggle flip class for consistent mobile tapping
+        // Tap to flip (works on all devices)
         card.addEventListener('click', () => {
-            card.setAttribute('data-interacted', 'true'); // Flag manual touch override
             card.classList.toggle('flipped');
         });
-        card.addEventListener('mouseleave', () => {
-            card.classList.remove('flipped'); // Safety reset
-        });
+        // Only reset on mouseleave on desktop (hover)
+        if (!isMobile) {
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('flipped');
+            });
+        }
     });
 
     // 2. Mobile Auto-Flip Intersection Observer
-    if (window.matchMedia("(max-width: 768px)").matches) {
+    // Disabled — user taps cards manually on mobile
+    if (false) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 // Only auto-flip if the user hasn't explicitly tapped it yet
