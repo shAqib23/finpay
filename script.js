@@ -1,4 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // 0. Scroll-Linked Layout Transitions
+    const mainLogo = document.getElementById('MainLogo');
+    const storyCard = document.getElementById('StoryCard');
+
+    window.addEventListener('scroll', () => {
+        const scrollThreshold = 100; // Trigger after 100px scroll
+        if (window.scrollY > scrollThreshold) {
+            mainLogo.classList.add('scrolled');
+            storyCard.classList.add('revealed');
+        } else {
+            mainLogo.classList.remove('scrolled');
+            storyCard.classList.remove('revealed');
+        }
+    });
+
     // 1. Theme Switcher and Background Morpher
     const productSuite = document.getElementById('products');
     const cards = document.querySelectorAll('.product-card');

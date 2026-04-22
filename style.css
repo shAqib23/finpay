@@ -8,21 +8,24 @@
     --glass-border: rgba(255, 255, 255, 0.2);
 
     /* Theme: Cardamom */
-    --cardamom-bg: #e8efe9; /* Sage Green & Cream */
+    --cardamom-bg: #e8efe9;
+    /* Sage Green & Cream */
     --cardamom-text: #2d4a32;
     --cardamom-accent: #6b8e23;
     --cardamom-glass-bg: rgba(255, 255, 255, 0.2);
     --cardamom-glass-border: rgba(255, 255, 255, 0.3);
 
     /* Theme: Pepper */
-    --pepper-bg: #1a1a1a; /* Deep Charcoal & Gold */
-    --pepper-text: #f0e6d2; 
+    --pepper-bg: #1a1a1a;
+    /* Deep Charcoal & Gold */
+    --pepper-text: #f0e6d2;
     --pepper-accent: #d4af37;
     --pepper-glass-bg: rgba(255, 255, 255, 0.05);
     --pepper-glass-border: rgba(255, 255, 255, 0.1);
 
     /* Theme: Honey */
-    --honey-bg: #f4ece1; /* Warm Amber & Toasted Almond */
+    --honey-bg: #f4ece1;
+    /* Warm Amber & Toasted Almond */
     --honey-text: #5c3a21;
     --honey-accent: #b87333;
     --honey-glass-bg: rgba(255, 255, 255, 0.3);
@@ -48,7 +51,10 @@ body {
     transition: background-color 0.8s ease-in-out, color 0.8s ease-in-out;
 }
 
-h1, h2, h3, .logo {
+h1,
+h2,
+h3,
+.logo {
     font-family: 'Playfair Display', serif;
 }
 
@@ -59,8 +65,39 @@ h1, h2, h3, .logo {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1;
+    z-index: 2; /* Increased to be above background but below logo */
     pointer-events: none;
+}
+
+/* Scroll-Linked Animation Assets */
+#MainLogo {
+    position: fixed;
+    top: 42%;
+    left: 38%;
+    transform: translate(-50%, -50%);
+    width: 950px; /* Fills the misty valley focal point */
+    z-index: 100;
+    /* Blend into the atmospheric fog — soft opacity + ethereal haze glow */
+    opacity: 0.82;
+    filter:
+        drop-shadow(0 0 30px rgba(220, 200, 170, 0.45))
+        drop-shadow(0 0 70px rgba(255, 240, 200, 0.2));
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                top 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                left 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+#MainLogo.scrolled {
+    width: 160px; /* Bigger pinned logo in top-left */
+    top: 20px;
+    left: 20px;
+    transform: translate(0, 0);
+    opacity: 1;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
 }
 
 /* Navbar (Blended) */
@@ -70,7 +107,8 @@ h1, h2, h3, .logo {
     width: 100%;
     padding: 2rem 3rem;
     display: flex;
-    justify-content: center; /* Center the links nicely */
+    justify-content: center;
+    /* Center the links nicely */
     align-items: center;
     z-index: 100;
     background: transparent;
@@ -78,27 +116,37 @@ h1, h2, h3, .logo {
 }
 
 .nav-logo {
-    height: 48px; /* Adjust height of top left logo */
+    height: 48px;
+    /* Adjust height of top left logo */
     width: auto;
     object-fit: contain;
-    mix-blend-mode: multiply; /* Blends logo to background natively */
+    mix-blend-mode: multiply;
+    /* Blends logo to background natively */
 }
 
 nav a {
     text-decoration: none;
-    color: inherit;
-    margin: 0 1.5rem; /* Symmetrical margins for perfectly centered links */
+    color: var(--text-primary);
+    margin: 0 1.5rem;
+    /* Symmetrical margins for perfectly centered links */
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
     transition: opacity 0.3s;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Helps maintain readability over anything */
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+    /* Light shadow for dark text readability */
 }
 
 nav a:hover {
     opacity: 0.7;
 }
+
+main {
+    position: relative;
+    z-index: 5; /* Above background (1) and particles (2) */
+}
+
 /* Hero Section */
 .hero {
     height: 100vh;
@@ -107,51 +155,81 @@ nav a:hover {
     align-items: center;
     text-align: center;
     padding: 0 2rem;
-    position: relative; 
-    overflow: hidden; /* Contains parallax scale boundary flawlessly */
+    position: relative;
+    overflow: hidden;
+    /* Contains parallax scale boundary flawlessly */
 }
 
 .hero-bg-layer {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: url('asset/herolena.png') no-repeat center center/cover;
+    position: fixed; /* Changed to fixed for the scroll-linked effect */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('asset/heropage.png') no-repeat center center/cover;
+    background-attachment: fixed; /* Explicitly fixed as requested */
     animation: gentleSlowZoom 25s infinite alternate ease-in-out;
-    z-index: -3; 
+    z-index: 1; /* Set to 1 as requested */
 }
 
 /* Base fade overlay so the next section blends natively into the deepest part of the valley */
 .hero-bg-layer::after {
     content: '';
     position: absolute;
-    left: 0; top: 0; width: 100%; height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
     /* Drops the heavy black darkness mask—only a smooth fade out exactly at the bottom cliff edge */
-    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 70%, var(--bg-color) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 70%, var(--bg-color) 100%);
 }
 
 @keyframes gentleSlowZoom {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.08); }
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.08);
+    }
 }
 
 /* Cinematic Volumetric Fog Extra Effects seamlessly layered onto the valley floor */
 .cinematic-fog {
     position: absolute;
-    bottom: -10vh; /* Settles dynamically right below the rock face edge */
+    bottom: -10vh;
+    /* Settles dynamically right below the rock face edge */
     width: 200vw;
     height: 50vh;
-    background: radial-gradient(ellipse at center, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 70%);
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 70%);
     filter: blur(25px);
     pointer-events: none;
-    z-index: -1; 
+    z-index: -1;
     animation: drift 40s infinite linear alternate;
 }
 
-.fog-1 { left: -50vw; animation-duration: 55s; opacity: 0.6; }
-.fog-2 { left: -20vw; bottom: -15vh; animation-duration: 45s; opacity: 0.4; animation-direction: alternate-reverse; }
+.fog-1 {
+    left: -50vw;
+    animation-duration: 55s;
+    opacity: 0.6;
+}
+
+.fog-2 {
+    left: -20vw;
+    bottom: -15vh;
+    animation-duration: 45s;
+    opacity: 0.4;
+    animation-direction: alternate-reverse;
+}
 
 @keyframes drift {
-    0% { transform: translateX(0) scale(1); }
-    100% { transform: translateX(8vw) scale(1.1); }
+    0% {
+        transform: translateX(0) scale(1);
+    }
+
+    100% {
+        transform: translateX(8vw) scale(1.1);
+    }
 }
 
 /* Product Suite */
@@ -169,8 +247,11 @@ nav a:hover {
 .product-suite::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(17, 17, 17, 0.4); 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(17, 17, 17, 0.4);
     z-index: 0;
 }
 
@@ -201,7 +282,7 @@ nav a:hover {
     text-align: center;
     transition: transform 0.7s ease-out;
     transform-style: preserve-3d;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
     border-radius: 24px;
 }
 
@@ -212,15 +293,21 @@ nav a:hover {
 }
 
 /* Base text transition setup */
-.product-card h2, .product-card h3, .product-card p,
-.frozen-card h2, .frozen-card p {
+.product-card h2,
+.product-card h3,
+.product-card p,
+.frozen-card h2,
+.frozen-card p {
     transition: text-shadow 0.3s ease-in-out;
 }
 
 /* Hover Mode: Soft Ambient Text Glow */
-.product-card:hover h2, .product-card:hover h3, .product-card:hover p,
-.frozen-card:hover h2, .frozen-card:hover p {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(240, 230, 210, 0.5);
+.product-card:hover h2,
+.product-card:hover h3,
+.product-card:hover p,
+.frozen-card:hover h2,
+.frozen-card:hover p {
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .card-side {
@@ -239,7 +326,8 @@ nav a:hover {
 }
 
 .card-front {
-    padding: 0; /* Full bleed for image */
+    padding: 0;
+    /* Full bleed for image */
     transition: background-color 0.8s, border-color 0.8s;
 }
 
@@ -247,23 +335,23 @@ nav a:hover {
 .product-card[data-target-theme="cardamom"] .card-back {
     background: rgba(144, 180, 148, 0.4);
     border-color: rgba(107, 142, 35, 0.3);
-    color: #f0e6d2;
+    color: var(--text-primary);
 }
 
 .product-card[data-target-theme="pepper"] .card-back {
     background: rgba(40, 40, 40, 0.8);
     border-color: rgba(212, 175, 55, 0.3);
-    color: #f0e6d2;
+    color: var(--text-primary);
 }
 
 .product-card[data-target-theme="pepper"] .card-inner {
-    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
 .product-card[data-target-theme="honey"] .card-back {
     background: rgba(210, 140, 70, 0.4);
     border-color: rgba(184, 115, 51, 0.3);
-    color: #f0e6d2;
+    color: var(--text-primary);
 }
 
 .card-back {
@@ -328,7 +416,7 @@ nav a:hover {
     width: 100%;
     height: 100%;
     background: url('asset/aboutus.png') no-repeat center center/cover;
-    z-index: -2; 
+    z-index: -2;
 }
 
 /* Darkening blending overlay for legibility */
@@ -339,53 +427,64 @@ nav a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4); 
+    background: rgba(0, 0, 0, 0.4);
     z-index: -1;
 }
 
 /* Redesigned content pane for 3D image background */
-.glass-panel-about {
+#StoryCard {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    
+
     /* 3D Glass Edge Highlighting */
     border-top: 1px solid rgba(255, 255, 255, 0.4);
     border-left: 1px solid rgba(255, 255, 255, 0.3);
     border-right: 1px solid rgba(255, 255, 255, 0.05);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    
+
     border-radius: 30px;
     padding: 5rem 4rem;
     max-width: 900px;
     text-align: center;
-    color: #fff;
-    
+    color: var(--text-primary);
+
     /* 3D Depth Shadows */
-    box-shadow: 
-        0 20px 50px rgba(0,0,0,0.6),    /* Deep ambient shadow */
-        0 50px 100px rgba(0,0,0,0.5),   /* Massive spread for floating effect */
-        inset 0 0 20px rgba(255,255,255,0.05); /* Inner thickness */
-        
-    z-index: 1;
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.6),
+        /* Deep ambient shadow */
+        0 50px 100px rgba(0, 0, 0, 0.5),
+        /* Massive spread for floating effect */
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
+    /* Inner thickness */
+
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(100vh) perspective(1000px);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+#StoryCard.revealed {
+    opacity: 1;
     transform: translateY(0) perspective(1000px);
 }
 
 /* 3D Floating Interactive Hover */
-.glass-panel-about:hover {
+#StoryCard:hover {
     transform: translateY(-8px) perspective(1000px) rotateX(1deg) rotateY(-1deg);
-    box-shadow: 
-        0 30px 60px rgba(0,0,0,0.7),
-        0 60px 120px rgba(0,0,0,0.6),
-        inset 0 0 20px rgba(255,255,255,0.1);
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.7),
+        0 60px 120px rgba(0, 0, 0, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .about-title {
     font-size: 4.5rem;
     margin-bottom: 2rem;
-    color: #fff;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    color: var(--text-primary);
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
 }
 
 .about-text {
@@ -393,7 +492,7 @@ nav a:hover {
     line-height: 1.8;
     margin-bottom: 1.5rem;
     letter-spacing: 0.5px;
-    color: #f0f0f0;
+    color: var(--text-sec);
 }
 
 .about-highlights {
@@ -401,7 +500,7 @@ nav a:hover {
     justify-content: space-around;
     align-items: center;
     margin-top: 4rem;
-    border-top: 1px solid rgba(255,255,255,0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
     padding-top: 3rem;
     flex-wrap: wrap;
     gap: 2rem;
@@ -410,7 +509,8 @@ nav a:hover {
 .highlight h3 {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.8rem;
-    color: #e8efe9; /* Light accent for dark bg */
+    color: var(--text-primary);
+    /* Light accent for dark bg */
     margin-bottom: 0.5rem;
 }
 
@@ -418,7 +518,7 @@ nav a:hover {
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #dcdcdc;
+    color: var(--text-sec);
 }
 
 /* Heritage Frozen Collection (Stacked Cinematic) */
@@ -430,7 +530,8 @@ nav a:hover {
     flex-direction: column;
     align-items: center;
     background: url('asset/frozen_bg.png') no-repeat center center/cover;
-    background-attachment: fixed; /* Continuously locked from Spices section */
+    background-attachment: fixed;
+    /* Continuously locked from Spices section */
     overflow: hidden;
 }
 
@@ -438,7 +539,10 @@ nav a:hover {
 .frozen-collection::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: rgba(17, 17, 17, 0.4);
     z-index: 0;
 }
@@ -471,14 +575,14 @@ nav a:hover {
 }
 
 .glass-panel-frozen {
-    background: rgba(255, 255, 255, 0.05); 
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     overflow: hidden;
     color: var(--text-primary);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     transform-style: preserve-3d;
@@ -487,12 +591,13 @@ nav a:hover {
 
 .frozen-card:hover .glass-panel-frozen {
     transform: translateY(-8px);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
 }
 
 .frozen-img-container {
     width: 100%;
-    height: 380px; /* Taller on flat layout to give photos room */
+    height: 380px;
+    /* Taller on flat layout to give photos room */
     overflow: hidden;
 }
 
@@ -507,24 +612,25 @@ nav a:hover {
 .frozen-card:hover .frozen-img,
 .frozen-card.flipped .frozen-img {
     filter: grayscale(0%) contrast(1);
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 
 .frozen-info {
     padding: 2.5rem 2rem;
     text-align: center;
-    background: rgba(0, 0, 0, 0.2); /* Deepen contrast strictly for lower text box */
+    background: rgba(0, 0, 0, 0.2);
+    /* Deepen contrast strictly for lower text box */
 }
 
 .frozen-info h2 {
     font-size: 1.8rem;
     margin-bottom: 0.8rem;
-    color: #f0e6d2; /* Explicitly forced white matching the upper array */
+    color: var(--text-primary);
 }
 
 .frozen-info p {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8); /* Ensures paragraphs are bright but distinct from H2 */
+    color: var(--text-sec);
     line-height: 1.6;
 }
 
@@ -534,7 +640,7 @@ nav a:hover {
     z-index: 10;
     max-width: 800px;
     text-align: center;
-    color: #FFFDE7; /* High contrast cream */
+    color: var(--text-primary);
 }
 
 .future-teaser-content {
@@ -546,7 +652,7 @@ nav a:hover {
     font-size: 4.5rem;
     margin-bottom: 2rem;
     line-height: 1.2;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    text-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
 }
 
 .future-text {
@@ -554,15 +660,15 @@ nav a:hover {
     font-size: 1.25rem;
     line-height: 1.8;
     margin-bottom: 3.5rem;
-    opacity: 0.9;
+    color: var(--text-sec);
     letter-spacing: 0.5px;
 }
 
 /* The Glowing CTA Interaction */
 .notify-btn-glow {
     background: transparent;
-    color: #FFFDE7;
-    border: 1px solid rgba(255, 253, 231, 0.4);
+    color: var(--text-primary);
+    border: 1px solid rgba(0, 0, 0, 0.4);
     padding: 1.2rem 3.5rem;
     border-radius: 40px;
     font-family: 'Montserrat', sans-serif;
@@ -571,7 +677,7 @@ nav a:hover {
     text-transform: uppercase;
     letter-spacing: 3px;
     cursor: pointer;
-    box-shadow: 0 0 0 rgba(255, 255, 255, 0); 
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
     transition: all 0.8s ease-in-out;
 }
 
@@ -581,7 +687,7 @@ nav a:hover {
 
 .notify-btn-glow:hover {
     border-color: #ffffff;
-    background: rgba(255, 255, 255, 0.05); 
+    background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.4);
 }
 
@@ -590,9 +696,11 @@ nav a:hover {
     .future-headline {
         font-size: 3.2rem;
     }
+
     .future-text {
         font-size: 1.1rem;
     }
+
     .dual-showcase {
         gap: 2rem;
     }
@@ -601,7 +709,10 @@ nav a:hover {
 .contact-section {
     min-height: 80vh;
     padding: 8rem 2rem;
-    background-color: var(--bg-color); /* Inherits seamless background fade smoothly */
+    background-color: var(--bg-color);
+    /* Must create stacking context to cover the fixed hero background */
+    position: relative;
+    z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -640,7 +751,7 @@ nav a:hover {
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 24px;
     padding: 3rem;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
 }
 
 .contact-info h3 {
@@ -719,11 +830,13 @@ nav a:hover {
 
 /* Unified Mobile Responsiveness */
 @media(max-width: 768px) {
+
     /* Navbar stack cleanly */
     .navbar {
         padding: 1.5rem 1rem;
         flex-wrap: wrap;
     }
+
     nav a {
         margin: 0.5rem 0.6rem;
         font-size: 0.75rem;
@@ -733,10 +846,12 @@ nav a:hover {
     .hero h1 {
         font-size: 3.2rem;
     }
+
     .hero p {
         font-size: 1rem;
         padding: 0 1rem;
     }
+
     .hero-logo {
         max-width: 70%;
     }
@@ -750,17 +865,21 @@ nav a:hover {
     .about-section {
         padding: 6rem 1rem 3rem 1rem;
     }
+
     .glass-panel-about {
         padding: 3rem 1.5rem;
     }
-    .about-title { 
-        font-size: 2.8rem; 
+
+    .about-title {
+        font-size: 2.8rem;
     }
-    .about-text { 
-        font-size: 1.05rem; 
+
+    .about-text {
+        font-size: 1.05rem;
     }
-    .about-highlights { 
-        flex-direction: column; 
+
+    .about-highlights {
+        flex-direction: column;
         gap: 1.5rem;
     }
 
@@ -768,13 +887,16 @@ nav a:hover {
     .contact-section {
         padding: 6rem 1rem 3rem 1rem;
     }
+
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
+
     .contact-title {
         font-size: 2.5rem;
     }
+
     .contact-info {
         padding: 2rem;
     }
