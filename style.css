@@ -835,11 +835,12 @@ main {
 
     /* ── NAVBAR MOBILE ── */
     .navbar {
-        padding: 0.55rem 0.6rem 0.55rem 72px; /* 72px clears the 44px logo + 10px left + 18px gap */
+        padding: 0.55rem 0.6rem; /* NO left padding — we use margin on nav instead */
         justify-content: flex-start;
         align-items: center;
         flex-wrap: nowrap;
         gap: 0;
+        height: 46px;
         background: rgba(255, 255, 255, 0.18);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
@@ -851,7 +852,8 @@ main {
         flex-wrap: nowrap;
         justify-content: flex-start;
         align-items: center;
-        width: 100%;
+        margin-left: 68px; /* clear: 10px logo-left + 44px logo-width + 14px gap */
+        width: calc(100% - 68px);
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
@@ -860,7 +862,7 @@ main {
     nav::-webkit-scrollbar { display: none; }
 
     nav a {
-        margin: 0 0.45rem;
+        margin: 0 0.4rem;
         font-size: 0.62rem;
         letter-spacing: 1.4px;
         white-space: nowrap;
@@ -877,11 +879,11 @@ main {
     /* Scrolled: logo sits above the navbar blur, left of HOME */
     #MainLogo.scrolled {
         width: 44px;
-        top: 6px;
+        top: 1px;
         left: 10px;
         transform: translate(0, 0);
         opacity: 1;
-        z-index: 101; /* above navbar (100) so it renders over the blur */
+        z-index: 200; /* well above navbar (100) and its blur */
         filter: none;
     }
 

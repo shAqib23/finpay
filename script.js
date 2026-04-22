@@ -20,46 +20,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
+    // Store auto-flip timeout per card so we can cancel it on manual tap
+    const cardTimers = new Map();
+
     cards.forEach(card => {
+        const flipCard = () => {
+            // Cancel any pending auto-flip-back timer when user manually taps
+            if (cardTimers.has(card)) {
+                clearTimeout(cardTimers.get(card));
+                cardTimers.delete(card);
+            }
+            card.classList.toggle('flipped');
+        };
+
         if (isMobile) {
-            // Use touchend for precise mobile tap — no drift across cards
+            // Precise touch: only flip if finger didn't move (not a scroll)
             let touchMoved = false;
             card.addEventListener('touchstart', () => { touchMoved = false; }, { passive: true });
             card.addEventListener('touchmove', () => { touchMoved = true; }, { passive: true });
             card.addEventListener('touchend', (e) => {
                 if (!touchMoved) {
-                    e.stopPropagation(); // Prevent bubbling to adjacent cards
-                    card.classList.toggle('flipped');
+                    e.stopPropagation();
+                    flipCard();
                 }
             });
         } else {
-            // Desktop: click to flip, mouseleave to reset
-            card.addEventListener('click', (e) => {
-                e.stopPropagation();
-                card.classList.toggle('flipped');
-            });
-            card.addEventListener('mouseleave', () => {
-                card.classList.remove('flipped');
-            });
+            card.addEventListener('click', (e) => { e.stopPropagation(); flipCard(); });
+            card.addEventListener('mouseleave', () => { card.classList.remove('flipped'); });
         }
     });
 
-    // 2. Mobile: auto-flip once when card scrolls into view, then user controls it
+    // Mobile: auto-flip once on scroll-into-view, then flip back, user can override anytime
     if (isMobile) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !entry.target.hasAttribute('data-auto-flipped')) {
-                    entry.target.classList.add('flipped');
                     entry.target.setAttribute('data-auto-flipped', 'true');
-                    setTimeout(() => {
+                    entry.target.classList.add('flipped');
+                    // Schedule auto-flip-back, store timer so tap can cancel it
+                    const tid = setTimeout(() => {
                         entry.target.classList.remove('flipped');
-                    }, 1200);
+                        cardTimers.delete(entry.target);
+                    }, 1400);
+                    cardTimers.set(entry.target, tid);
                 }
             });
         }, { threshold: 0.55 });
 
         cards.forEach(card => observer.observe(card));
     }
+
 
     // 1b. Frozen Cards 3D Tilt Hover Logic
 
