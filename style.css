@@ -273,6 +273,8 @@ main {
     perspective: 1000px;
     height: 480px;
     cursor: pointer;
+    touch-action: manipulation; /* prevent ghost taps on adjacent cards */
+    -webkit-tap-highlight-color: transparent;
 }
 
 .card-inner {
@@ -833,7 +835,7 @@ main {
 
     /* ── NAVBAR MOBILE ── */
     .navbar {
-        padding: 0.55rem 0.6rem 0.55rem 62px; /* extra left space for logo */
+        padding: 0.55rem 0.6rem 0.55rem 72px; /* 72px clears the 44px logo + 10px left + 18px gap */
         justify-content: flex-start;
         align-items: center;
         flex-wrap: nowrap;

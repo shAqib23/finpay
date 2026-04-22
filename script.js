@@ -21,12 +21,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     cards.forEach(card => {
-        // Tap toggles flip on all devices
-        card.addEventListener('click', () => {
-            card.classList.toggle('flipped');
-        });
-        // Desktop only: hovering away resets the card
-        if (!isMobile) {
+        if (isMobile) {
+            // Use touchend for precise mobile tap — no drift across cards
+            let touchMoved = false;
+            card.addEventListener('touchstart', () => { touchMoved = false; }, { passive: true });
+            card.addEventListener('touchmove', () => { touchMoved = true; }, { passive: true });
+            card.addEventListener('touchend', (e) => {
+                if (!touchMoved) {
+                    e.stopPropagation(); // Prevent bubbling to adjacent cards
+                    card.classList.toggle('flipped');
+                }
+            });
+        } else {
+            // Desktop: click to flip, mouseleave to reset
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                card.classList.toggle('flipped');
+            });
             card.addEventListener('mouseleave', () => {
                 card.classList.remove('flipped');
             });
@@ -37,11 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isMobile) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // Auto-flip once when it enters the viewport for the first time
                 if (entry.isIntersecting && !entry.target.hasAttribute('data-auto-flipped')) {
                     entry.target.classList.add('flipped');
                     entry.target.setAttribute('data-auto-flipped', 'true');
-                    // Auto-flip back after 1.2s so user sees the reveal then gets front again
                     setTimeout(() => {
                         entry.target.classList.remove('flipped');
                     }, 1200);
@@ -73,10 +82,22 @@ document.addEventListener("DOMContentLoaded", () => {
             card.parentElement.classList.remove('flipped'); // Safety for mobile emulated states
         });
 
-        // Safe Mobile tap interaction binding
-        card.addEventListener('click', () => {
+        // Mobile tap on frozen card — stop propagation to avoid triggering product card
+        card.addEventListener('click', (e) => {
+            e.stopPropagation();
             card.parentElement.classList.toggle('flipped');
         });
+        if (isMobile) {
+            let ft = false;
+            card.addEventListener('touchstart', () => { ft = false; }, { passive: true });
+            card.addEventListener('touchmove', () => { ft = true; }, { passive: true });
+            card.addEventListener('touchend', (e) => {
+                if (!ft) {
+                    e.stopPropagation();
+                    card.parentElement.classList.toggle('flipped');
+                }
+            });
+        }
     });
 
     // 3. Parallax Canvas Particles setup
