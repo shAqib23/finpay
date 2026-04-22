@@ -831,15 +831,47 @@ main {
 /* Unified Mobile Responsiveness */
 @media(max-width: 768px) {
 
-    /* Navbar stack cleanly */
+    /* ── NAVBAR MOBILE ── */
     .navbar {
-        padding: 1.5rem 1rem;
+        padding: 0.75rem 1rem;
+        justify-content: center;
         flex-wrap: wrap;
+        gap: 0;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.1rem;
+        width: 100%;
     }
 
     nav a {
-        margin: 0.5rem 0.6rem;
-        font-size: 0.75rem;
+        margin: 0.3rem 0.5rem;
+        font-size: 0.65rem;
+        letter-spacing: 1.5px;
+    }
+
+    /* ── MAIN LOGO MOBILE ── */
+    /* On mobile: make logo fit the viewport centered over the bright area */
+    #MainLogo {
+        width: 90vw;          /* fills nearly full width */
+        top: 50%;             /* center vertically in viewport */
+        left: 50%;            /* center horizontally */
+        transform: translate(-50%, -50%);
+    }
+
+    /* After scroll: compact pinned logo top-left */
+    #MainLogo.scrolled {
+        width: 90px;
+        top: 14px;
+        left: 14px;
+        transform: translate(0, 0);
     }
 
     /* Shrink huge hero texts/logos */
@@ -899,5 +931,23 @@ main {
 
     .contact-info {
         padding: 2rem;
+    }
+}
+
+/* Extra-small phones (< 480px) */
+@media(max-width: 480px) {
+    #MainLogo {
+        width: 85vw;
+        top: 48%;
+    }
+
+    nav a {
+        font-size: 0.6rem;
+        margin: 0.25rem 0.35rem;
+        letter-spacing: 1px;
+    }
+
+    .navbar {
+        padding: 0.6rem 0.5rem;
     }
 }
