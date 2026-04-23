@@ -888,8 +888,13 @@ main {
     }
 
     /* Disable CSS :hover flip on mobile — use .flipped class only via JS tap */
+    /* Neutralize CSS hover flip on mobile so JS toggle handles it exclusively */
     .product-card:hover .card-inner {
         transform: none;
+    }
+    /* Re-enable flip specifically for the JS-driven class, with priority */
+    .product-card.flipped .card-inner {
+        transform: rotateY(180deg) !important;
     }
 
     /* Shrink huge hero texts/logos */

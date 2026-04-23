@@ -27,10 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let isProcessing = false;
 
         const flipCard = (e) => {
-            if (e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
+            if (e) e.stopPropagation();
             if (isProcessing) return;
             isProcessing = true;
 
@@ -102,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Unified click for both mobile and desktop
         card.addEventListener('click', (e) => {
-            e.preventDefault();
             e.stopPropagation();
             card.parentElement.classList.toggle('flipped');
         });
