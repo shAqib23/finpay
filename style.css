@@ -119,7 +119,7 @@ h3,
     height: 48px;
     /* Adjust height of top left logo */
     width: auto;
-    object-fit: contain;
+    transition: filter 0.5s ease;
     mix-blend-mode: multiply;
     /* Blends logo to background natively */
 }
@@ -615,6 +615,18 @@ main {
 .frozen-card.flipped .frozen-img {
     filter: grayscale(0%) contrast(1);
     transform: scale(1.05);
+}
+
+.coming-soon-tag {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin: 2rem 0 0.5rem 0;
+    text-align: center;
+    opacity: 0.9;
+    width: 100%;
 }
 
 .frozen-info {
