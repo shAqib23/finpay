@@ -893,7 +893,7 @@ main {
     /* ── MAIN LOGO MOBILE ── */
     #MainLogo {
         width: 90vw;
-        top: 18%; /* Placed significantly higher in the empty sky */
+        top: 12%; /* Placed elegantly higher in the empty sky to clear all mountains */
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -984,7 +984,7 @@ main {
 @media(max-width: 480px) {
     #MainLogo {
         width: 85vw;
-        top: 25%; /* Drop it elegantly into the spacious new sky area */
+        top: 12%; /* Keep it cleanly above the peaks */
     }
 
     .hero-bg-layer {
