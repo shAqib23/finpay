@@ -166,7 +166,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('asset/heropage.png') no-repeat center center/cover;
+    background: url('asset/hero_new.jpg') no-repeat center center/cover;
     background-attachment: fixed; /* Explicitly fixed as requested */
     animation: gentleSlowZoom 25s infinite alternate ease-in-out;
     z-index: 1; /* Set to 1 as requested */
