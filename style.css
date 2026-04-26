@@ -980,7 +980,11 @@ main {
 @media(max-width: 480px) {
     #MainLogo {
         width: 85vw;
-        top: 48%;
+        top: 15%; /* Elevated safely into the sky */
+    }
+
+    .hero-bg-layer {
+        background-position: 70% center; /* Shift mobile background to ensure massive mountain is visible and right-aligned, leaving sky top-left */
     }
 
     nav a {
