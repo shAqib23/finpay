@@ -72,7 +72,7 @@ h3,
 /* Scroll-Linked Animation Assets */
 #MainLogo {
     position: fixed;
-    top: 42%;
+    top: 33%; /* Shifted higher into the empty sky */
     left: 38%;
     transform: translate(-50%, -50%);
     width: 950px; /* Fills the misty valley focal point */
@@ -883,7 +883,7 @@ main {
     /* ── MAIN LOGO MOBILE ── */
     #MainLogo {
         width: 90vw;
-        top: 50%;
+        top: 35%; /* Shifted higher into the empty sky on mobile too */
         left: 50%;
         transform: translate(-50%, -50%);
     }
