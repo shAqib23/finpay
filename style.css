@@ -851,10 +851,6 @@ main {
 /* Unified Mobile Responsiveness */
 @media(max-width: 768px) {
 
-    .hero-bg-layer {
-        background-position: 25% center !important; /* Forces the clear sunset sky into view, pushing the right-side mountain mostly off-screen */
-    }
-
     /* ── NAVBAR MOBILE ── */
     .navbar {
         padding: 0.55rem 0.6rem; /* NO left padding — we use margin on nav instead */
@@ -893,7 +889,7 @@ main {
     /* ── MAIN LOGO MOBILE ── */
     #MainLogo {
         width: 90vw;
-        top: 12%; /* Placed elegantly higher in the empty sky to clear all mountains */
+        top: 50%; /* Restored original positioning */
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -984,11 +980,7 @@ main {
 @media(max-width: 480px) {
     #MainLogo {
         width: 85vw;
-        top: 12%; /* Keep it cleanly above the peaks */
-    }
-
-    .hero-bg-layer {
-        background-position: 25% center !important; /* Perfect framing for the clear sky on extra small phones */
+        top: 48%; /* Restored original positioning */
     }
 
     nav a {
