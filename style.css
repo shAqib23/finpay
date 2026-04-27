@@ -72,8 +72,8 @@ h3,
 /* Scroll-Linked Animation Assets */
 #MainLogo {
     position: fixed;
-    top: 20%; /* Lifted securely into the clear sky to avoid laptop cropping on peaks */
-    left: 38%;
+    top: 27%; /* Lifted higher into the rich orange sky, avoiding the mountain ridges below */
+    left: 45%; /* slightly left to avoid extreme mountain peak on desktop */
     transform: translate(-50%, -50%);
     width: 950px; /* Fills the misty valley focal point */
     z-index: 100;
@@ -851,6 +851,10 @@ main {
 /* Unified Mobile Responsiveness */
 @media(max-width: 768px) {
 
+    .hero-bg-layer {
+        background-position: 25% center !important; /* Forces the clear sunset sky into view, pushing the right-side mountain mostly off-screen */
+    }
+
     /* ── NAVBAR MOBILE ── */
     .navbar {
         padding: 0.55rem 0.6rem; /* NO left padding — we use margin on nav instead */
@@ -889,7 +893,7 @@ main {
     /* ── MAIN LOGO MOBILE ── */
     #MainLogo {
         width: 90vw;
-        top: 50%; /* Restored original positioning */
+        top: 40%; /* Lowered deeply into the warmer orange glowing area */
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -980,7 +984,11 @@ main {
 @media(max-width: 480px) {
     #MainLogo {
         width: 85vw;
-        top: 48%; /* Restored original positioning */
+        top: 42%; /* Lowered deeply into the orange band */
+    }
+
+    .hero-bg-layer {
+        background-position: 25% center !important; /* Perfect framing for the clear sky on extra small phones */
     }
 
     nav a {
