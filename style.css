@@ -473,7 +473,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: url('asset/frozen_bg.png') no-repeat center center/cover;
+    background: url('asset/premium_ice_bg.png') no-repeat center center/cover;
     background-attachment: fixed;
     /* 8K HD Clarity Enhancements */
     /* Clean, high-clarity filters without grain-inducing over-processing */
@@ -620,15 +620,18 @@ main {
     filter: contrast(1.1); /* Sharp, high-contrast */
 }
 
-.coming-soon-tag {
-    font-size: 0.8rem;
+.global-coming-soon {
+    font-size: 2.5rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 6px;
     color: #D4AF37; /* Golden accent */
-    margin: 1.5rem 0 0.5rem 0;
+    margin-bottom: 3rem;
     text-align: center;
     width: 100%;
+    z-index: 20;
+    position: relative;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 .frozen-info {
