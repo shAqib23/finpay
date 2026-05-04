@@ -334,81 +334,128 @@ document.addEventListener("DOMContentLoaded", () => {
             requestAnimationFrame(animate);
         }
 
-        // --- High-Fidelity Frozen Carousel Logic ---
-        const frozenSlides = document.querySelectorAll('.carousel-slide');
-        const leftBtn = document.getElementById('carousel-left');
-        const rightBtn = document.getElementById('carousel-right');
-        let currentSlideIndex = 0;
-        let isAnimating = false;
-
-        if (frozenSlides.length > 0 && leftBtn && rightBtn) {
-            // Initialize positions
-            frozenSlides.forEach((slide, i) => {
-                if (i !== 0) {
-                    gsap.set(slide, { xPercent: 100, autoAlpha: 0 });
-                } else {
-                    gsap.set(slide, { xPercent: 0, autoAlpha: 1 });
-                    slide.classList.add('active');
-                }
+        // --- Vanilla JS CardSwap Logic ---
+        const swapCards = Array.from(document.querySelectorAll('.swap-card'));
+        const container = document.getElementById('frozen-card-swap');
+        
+        if (swapCards.length > 0 && container) {
+            const cardDistance = 60;
+            const verticalDistance = 70;
+            const delay = 5000;
+            const skewAmount = 6;
+            
+            const makeSlot = (i, distX, distY, total) => ({
+                x: i * distX,
+                y: -i * distY,
+                z: -i * distX * 1.5,
+                zIndex: total - i
             });
-
-            const slideTo = (nextIndex, direction) => {
-                if (isAnimating || nextIndex === currentSlideIndex) return;
-                isAnimating = true;
-
-                const currentSlide = frozenSlides[currentSlideIndex];
-                const nextSlide = frozenSlides[nextIndex];
-
-                // If direction is 'right', user clicked right arrow.
-                // Request: current slides to RIGHT, next emerges from LEFT
-                const startX = direction === 'right' ? -100 : 100;
-                const endX = direction === 'right' ? 100 : -100;
-
-                // Start the next slide scaled down and faded
-                gsap.set(nextSlide, { xPercent: startX, scale: 0.85, autoAlpha: 0 });
-
-                const tl = gsap.timeline({
-                    onComplete: () => {
-                        currentSlide.classList.remove('active');
-                        nextSlide.classList.add('active');
-                        currentSlideIndex = nextIndex;
-                        isAnimating = false;
-                    }
+            
+            const placeNow = (el, slot, skew) => {
+                gsap.set(el, {
+                    x: slot.x,
+                    y: slot.y,
+                    z: slot.z,
+                    xPercent: -50,
+                    yPercent: -50,
+                    skewY: skew,
+                    transformOrigin: 'center center',
+                    zIndex: slot.zIndex,
+                    force3D: true
                 });
-
-                // Smooth, dynamic, and soothing ease
-                const ease = 'power3.inOut'; 
-                const duration = 1.0; // Slightly longer for a luxurious feel
-
-                // Current slide pushes out, shrinks slightly, and fades
-                tl.to(currentSlide, { 
-                    xPercent: endX, 
-                    scale: 0.85,
-                    autoAlpha: 0,
-                    duration, 
-                    ease 
-                }, 0);
-
-                // Next slide sweeps in, scales up to full size, and fades in
-                tl.to(nextSlide, { 
-                    xPercent: 0, 
-                    scale: 1,
-                    autoAlpha: 1,
-                    duration, 
-                    ease 
-                }, 0);
             };
 
-            rightBtn.addEventListener('click', () => {
-                let nextIndex = currentSlideIndex + 1;
-                if (nextIndex >= frozenSlides.length) nextIndex = 0;
-                slideTo(nextIndex, 'right');
-            });
+            const config = {
+                ease: 'elastic.out(0.6,0.9)',
+                durDrop: 2,
+                durMove: 2,
+                durReturn: 2,
+                promoteOverlap: 0.9,
+                returnDelay: 0.05
+            };
 
-            leftBtn.addEventListener('click', () => {
-                let prevIndex = currentSlideIndex - 1;
-                if (prevIndex < 0) prevIndex = frozenSlides.length - 1;
-                slideTo(prevIndex, 'left');
+            let order = swapCards.map((_, i) => i);
+            const total = swapCards.length;
+            
+            // Initialize positions
+            swapCards.forEach((card, i) => placeNow(card, makeSlot(i, cardDistance, verticalDistance, total), skewAmount));
+
+            let isSwapping = false;
+            let currentTl = null;
+
+            const swap = () => {
+                if (order.length < 2 || isSwapping) return;
+                isSwapping = true;
+
+                const front = order[0];
+                const rest = order.slice(1);
+                const elFront = swapCards[front];
+                
+                const tl = gsap.timeline({
+                    onComplete: () => {
+                        order = [...rest, front];
+                        isSwapping = false;
+                    }
+                });
+                
+                currentTl = tl;
+
+                tl.to(elFront, {
+                    y: '+=500',
+                    duration: config.durDrop,
+                    ease: config.ease
+                });
+
+                tl.addLabel('promote', `-=${config.durDrop * config.promoteOverlap}`);
+                
+                rest.forEach((idx, i) => {
+                    const el = swapCards[idx];
+                    const slot = makeSlot(i, cardDistance, verticalDistance, total);
+                    tl.set(el, { zIndex: slot.zIndex }, 'promote');
+                    tl.to(el, {
+                        x: slot.x,
+                        y: slot.y,
+                        z: slot.z,
+                        duration: config.durMove,
+                        ease: config.ease
+                    }, `promote+=${i * 0.15}`);
+                });
+
+                const backSlot = makeSlot(total - 1, cardDistance, verticalDistance, total);
+                tl.addLabel('return', `promote+=${config.durMove * config.returnDelay}`);
+                tl.call(() => {
+                    gsap.set(elFront, { zIndex: backSlot.zIndex });
+                }, undefined, 'return');
+                
+                tl.to(elFront, {
+                    x: backSlot.x,
+                    y: backSlot.y,
+                    z: backSlot.z,
+                    duration: config.durReturn,
+                    ease: config.ease
+                }, 'return');
+            };
+
+            let swapInterval = setInterval(swap, delay);
+            
+            // Allow clicking to swap immediately
+            container.addEventListener('click', () => {
+                clearInterval(swapInterval);
+                if (currentTl && isSwapping) {
+                    currentTl.progress(1); // fast forward current swap if any
+                }
+                swap();
+                swapInterval = setInterval(swap, delay);
+            });
+            
+            // Pause on hover
+            container.addEventListener('mouseenter', () => {
+                if(currentTl) currentTl.pause();
+                clearInterval(swapInterval);
+            });
+            container.addEventListener('mouseleave', () => {
+                if(currentTl) currentTl.play();
+                swapInterval = setInterval(swap, delay);
             });
         }
 
