@@ -468,36 +468,38 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // --- Active Section Tracking (Moving Dot) ---
-        const sections = document.querySelectorAll('section[id], div[id="products"]');
+        const sections = ['home', 'about', 'products', 'frozen', 'contact'];
         const navLinks = document.querySelectorAll('.pill-list .pill, .mobile-menu-link');
 
-        const observerOptions = {
-            root: null,
-            rootMargin: '-40% 0px -40% 0px', // Trigger when section occupies the middle 20% of viewport
-            threshold: 0
-        };
+        const updateActiveLink = () => {
+            let currentSection = 'home';
+            const scrollPos = window.scrollY + window.innerHeight * 0.3; // Offset for better detection
 
-        const observerCallback = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    
-                    // Update Desktop Pills & Mobile Links
-                    navLinks.forEach(link => {
-                        const href = link.getAttribute('href');
-                        // Handle Home link (href="#" or href="#home")
-                        if ((href === '#' && id === 'home') || href === `#${id}`) {
-                            link.classList.add('is-active');
-                        } else {
-                            link.classList.remove('is-active');
-                        }
-                    });
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    const offsetTop = el.offsetTop;
+                    if (scrollPos >= offsetTop) {
+                        currentSection = id;
+                    }
+                }
+            });
+
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                const isHome = (href === '#' || href === '#home') && currentSection === 'home';
+                const isOther = href === `#${currentSection}`;
+                
+                if (isHome || isOther) {
+                    link.classList.add('is-active');
+                } else {
+                    link.classList.remove('is-active');
                 }
             });
         };
 
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-        sections.forEach(section => observer.observe(section));
+        window.addEventListener('scroll', updateActiveLink);
+        updateActiveLink(); // Initial check
 
         animate();
     }
