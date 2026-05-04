@@ -104,14 +104,14 @@ h3,
     mix-blend-mode: normal;
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25)) brightness(1) contrast(1);
     
-    /* Glassmorphism Effect hugging the logo tightly */
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px; /* Changed to a modern rectangle */
-    padding: 0.5rem 1.8rem; /* Made the rectangular box a bit wider */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    /* glassmorphism removed to keep only one effect on the nav items */
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
 }
 
 /* Navbar (Blended) */
