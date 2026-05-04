@@ -467,6 +467,38 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+        // --- Active Section Tracking (Moving Dot) ---
+        const sections = document.querySelectorAll('section[id], div[id="products"]');
+        const navLinks = document.querySelectorAll('.pill-list .pill, .mobile-menu-link');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-40% 0px -40% 0px', // Trigger when section occupies the middle 20% of viewport
+            threshold: 0
+        };
+
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    
+                    // Update Desktop Pills & Mobile Links
+                    navLinks.forEach(link => {
+                        const href = link.getAttribute('href');
+                        // Handle Home link (href="#" or href="#home")
+                        if ((href === '#' && id === 'home') || href === `#${id}`) {
+                            link.classList.add('is-active');
+                        } else {
+                            link.classList.remove('is-active');
+                        }
+                    });
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        sections.forEach(section => observer.observe(section));
+
         animate();
     }
 });
