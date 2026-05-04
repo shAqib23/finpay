@@ -143,10 +143,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Logo and Story Card Transitions
         if (scrollPos > scrollThreshold) {
-            mainLogo.classList.add('scrolled');
+            mainLogo.classList.add('faded');
             storyCard.classList.add('revealed');
         } else {
-            mainLogo.classList.remove('scrolled');
+            mainLogo.classList.remove('faded');
             storyCard.classList.remove('revealed');
         }
 
