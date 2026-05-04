@@ -1,39 +1,40 @@
 :root {
     /* Default Theme */
     --bg-color: #f8f9fa;
-    --text-primary: #1a1a1a;
-    --text-sec: #4a4a4a;
-    --accent: #2c3e50;
+    --text-primary: #000000;
+    --text-sec: #000000;
+    --accent: #000000;
     --glass-bg: rgba(255, 255, 255, 0.1);
     --glass-border: rgba(255, 255, 255, 0.2);
 
     /* Theme: Cardamom */
     --cardamom-bg: #e8efe9;
     /* Sage Green & Cream */
-    --cardamom-text: #2d4a32;
-    --cardamom-accent: #6b8e23;
+    --cardamom-text: #000000;
+    --cardamom-accent: #000000;
     --cardamom-glass-bg: rgba(255, 255, 255, 0.2);
     --cardamom-glass-border: rgba(255, 255, 255, 0.3);
 
     /* Theme: Pepper */
     --pepper-bg: #1a1a1a;
     /* Deep Charcoal & Gold */
-    --pepper-text: #f0e6d2;
-    --pepper-accent: #d4af37;
+    --pepper-text: #000000;
+    --pepper-accent: #000000;
     --pepper-glass-bg: rgba(255, 255, 255, 0.05);
     --pepper-glass-border: rgba(255, 255, 255, 0.1);
 
     /* Theme: Honey */
     --honey-bg: #f4ece1;
     /* Warm Amber & Toasted Almond */
-    --honey-text: #5c3a21;
-    --honey-accent: #b87333;
+    --honey-text: #000000;
+    --honey-accent: #000000;
     --honey-glass-bg: rgba(255, 255, 255, 0.3);
     --honey-glass-border: rgba(255, 255, 255, 0.3);
 }
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 * {
@@ -72,32 +73,45 @@ h3,
 /* Scroll-Linked Animation Assets */
 #MainLogo {
     position: fixed;
-    top: 27%; /* Lifted higher into the rich orange sky, avoiding the mountain ridges below */
-    left: 45%; /* slightly left to avoid extreme mountain peak on desktop */
+    top: 35%; 
+    left: 25%; /* Placed on the empty space on the left side */
     transform: translate(-50%, -50%);
-    width: 950px; /* Fills the misty valley focal point */
+    width: 320px; /* Adjusted down from 800px because the transparent margins were cropped */
     z-index: 100;
-    /* Blend into the atmospheric background perfectly */
-    opacity: 0.9;
-    mix-blend-mode: multiply; /* Multiplies the logo colors over the sunset sky seamlessly */
-    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.15)); /* Soft natural shadow instead of intense glow */
-    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-                top 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-                left 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    mix-blend-mode: multiply; /* Blends elegantly into the sky colors */
+    opacity: 0.85;
+    filter: drop-shadow(0 2px 15px rgba(0, 0, 0, 0.1));
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                top 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                left 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.4s ease, filter 0.4s ease, mix-blend-mode 0.4s ease,
+                background 0.4s ease, backdrop-filter 0.4s ease, border-radius 0.4s ease,
+                padding 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
     pointer-events: none;
+    background: transparent;
+    border: 1px solid transparent;
+    box-sizing: content-box;
 }
 
 #MainLogo.scrolled {
-    width: 160px; /* Bigger pinned logo in top-left */
-    top: 20px;
-    left: 20px;
+    width: 85px; /* Reduced the size of the logo */
+    top: 1rem;
+    left: 1.5rem;
     transform: translate(0, 0);
     opacity: 1;
-    mix-blend-mode: normal; /* Revoke multiply when pinned to navbar */
-    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
+    mix-blend-mode: normal;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25)) brightness(1) contrast(1);
+    
+    /* Glassmorphism Effect hugging the logo tightly */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px; /* Changed to a modern rectangle */
+    padding: 0.5rem 1.8rem; /* Made the rectangular box a bit wider */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 /* Navbar (Blended) */
@@ -105,14 +119,25 @@ h3,
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 2rem 3rem;
+    padding: 1.5rem 3rem; /* slightly tighter to look like a bar */
     display: flex;
     justify-content: center;
-    /* Center the links nicely */
     align-items: center;
     z-index: 100;
     background: transparent;
     transition: background 0.8s, border-color 0.8s;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.6rem 1.5rem;
+    border-radius: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .nav-logo {
@@ -127,7 +152,7 @@ h3,
 nav a {
     text-decoration: none;
     color: var(--text-primary);
-    margin: 0 1.5rem;
+    margin: 0 1rem;
     /* Symmetrical margins for perfectly centered links */
     font-size: 0.9rem;
     font-weight: 600;
@@ -166,28 +191,31 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('asset/hero_new.jpg') no-repeat center center/cover;
+    background: url('asset/hero_latest.jpg') no-repeat center center/cover;
     background-attachment: fixed; /* Explicitly fixed as requested */
-    animation: gentleSlowZoom 25s infinite alternate ease-in-out;
     z-index: 1; /* Set to 1 as requested */
-    /* Quality enhancements */
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+    /* 8K Quality Enhancements */
     transform: translateZ(0); /* Hardware acceleration */
-    will-change: transform;
-    filter: contrast(1.1) brightness(1.02) saturate(1.1);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+    /* Clean, high-clarity filters without grain-inducing over-processing */
+    filter: brightness(1.02) contrast(1.02) saturate(1.05);
+    /* High quality interpolation */
+    image-rendering: auto;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Base fade overlay so the next section blends natively into the deepest part of the valley */
+/* Transitions out hero elements (jars/spices) as user scrolls towards About section */
+.hero-bg-layer.faded {
+    opacity: 0;
+    transform: scale(1.1) translateY(-30px);
+    pointer-events: none;
+}
+
+/* Fade overlay removed as per request to eliminate white fogginess */
 .hero-bg-layer::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    /* Drops the heavy black darkness mask—only a smooth fade out exactly at the bottom cliff edge */
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 70%, var(--bg-color) 100%);
+    display: none;
 }
 
 @keyframes gentleSlowZoom {
@@ -200,32 +228,9 @@ main {
     }
 }
 
-/* Cinematic Volumetric Fog Extra Effects seamlessly layered onto the valley floor */
+/* Cinematic Volumetric Fog - Removed as per request */
 .cinematic-fog {
-    position: absolute;
-    bottom: -10vh;
-    /* Settles dynamically right below the rock face edge */
-    width: 200vw;
-    height: 50vh;
-    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 70%);
-    filter: blur(25px);
-    pointer-events: none;
-    z-index: -1;
-    animation: drift 40s infinite linear alternate;
-}
-
-.fog-1 {
-    left: -50vw;
-    animation-duration: 55s;
-    opacity: 0.6;
-}
-
-.fog-2 {
-    left: -20vw;
-    bottom: -15vh;
-    animation-duration: 45s;
-    opacity: 0.4;
-    animation-direction: alternate-reverse;
+    display: none;
 }
 
 @keyframes drift {
@@ -238,269 +243,200 @@ main {
     }
 }
 
-/* Product Suite */
-.product-suite {
-    position: relative;
-    padding: 10rem 2rem;
+/* Distinct Product Pages */
+.product-page {
     min-height: 100vh;
-    background: url('asset/frozen_bg.png') no-repeat center center/cover;
-    background-attachment: fixed;
-    color: var(--text-primary);
-    overflow: hidden;
-}
-
-/* Identical cinematic darkening mask mapped exactly across sections */
-.product-suite::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(17, 17, 17, 0.4);
-    z-index: 0;
-}
-
-.product-grid {
-    position: relative;
-    z-index: 10;
-}
-
-/* Glass Panels */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 4rem;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.product-card {
-    perspective: 1000px;
-    height: 480px;
-    cursor: pointer;
-    touch-action: manipulation; /* prevent ghost taps on adjacent cards */
-    -webkit-tap-highlight-color: transparent;
-}
-
-.card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.7s ease-out;
-    transform-style: preserve-3d;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-    border-radius: 24px;
-}
-
-/* Flip trigger on hover OR manual flipped class for mobile touch */
-.product-card:hover .card-inner,
-.product-card.flipped .card-inner {
-    transform: rotateY(180deg);
-}
-
-/* Base text transition setup */
-.product-card h2,
-.product-card h3,
-.product-card p,
-.frozen-card h2,
-.frozen-card p {
-    transition: text-shadow 0.3s ease-in-out;
-}
-
-/* Hover Mode: Soft Ambient Text Glow */
-.product-card:hover h2,
-.product-card:hover h3,
-.product-card:hover p,
-.frozen-card:hover h2,
-.frozen-card:hover p {
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.card-side {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    border-radius: 24px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 3rem 2rem;
+    position: relative;
     overflow: hidden;
+    /* Smooth transition if themes overlap, but usually scroll handles it */
+    transition: background-color 0.8s ease;
 }
 
-.card-front {
-    padding: 0;
-    /* Full bleed for image */
-    transition: background-color 0.8s, border-color 0.8s;
+.product-split {
+    display: flex;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+    gap: 6rem;
+    align-items: center;
 }
 
-/* Permanent nice colors for each card to replace basic white */
-.product-card[data-target-theme="cardamom"] .card-back {
-    background: rgba(144, 180, 148, 0.4);
-    border-color: rgba(107, 142, 35, 0.3);
-    color: var(--text-primary);
+/* Optional: reverse layout for every other product */
+.product-split.reverse-split {
+    flex-direction: row-reverse;
 }
 
-.product-card[data-target-theme="pepper"] .card-back {
-    background: rgba(40, 40, 40, 0.8);
-    border-color: rgba(212, 175, 55, 0.3);
-    color: var(--text-primary);
+.product-image-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-.product-card[data-target-theme="pepper"] .card-inner {
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+.product-image-container {
+    width: 100%;
+    max-width: 550px;
+    aspect-ratio: 4/5;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
-.product-card[data-target-theme="honey"] .card-back {
-    background: rgba(210, 140, 70, 0.4);
-    border-color: rgba(184, 115, 51, 0.3);
-    color: var(--text-primary);
-}
-
-.card-back {
-    transform: rotateY(180deg);
-    padding: 3rem 2rem;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.product-img {
+.product-image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Include back side in the glow effect */
-.product-card:hover .card-back h2,
-.product-card:hover .card-back h3 {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(240, 230, 210, 0.5);
+.product-image-container:hover img {
+    transform: scale(1.08);
 }
 
-.card-front h2 {
-    font-size: 2.2rem;
+.product-content-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 2rem;
+}
+
+.product-content-side h2 {
+    font-size: 5rem;
     margin-bottom: 0.5rem;
+    line-height: 1.1;
 }
 
-.card-front .subtitle {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
+.product-content-side h3.subtitle {
+    font-size: 1.2rem;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 1.5rem;
-    opacity: 0.8;
+    letter-spacing: 4px;
+    margin-bottom: 2.5rem;
+    border-left: 3px solid;
+    padding-left: 1rem;
 }
 
-.product-story p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-top: 1rem;
+.product-content-side p {
+    font-size: 1.35rem;
+    line-height: 1.8;
+    max-width: 600px;
 }
+
+/* --- Theme Colors for Product Pages --- */
+.product-page.cardamom-theme {
+    background-color: #f2f7f4; /* Sage light */
+}
+.product-page.cardamom-theme h2 { color: #2c4a30; }
+.product-page.cardamom-theme h3.subtitle { color: #4e7a54; border-color: #4e7a54; }
+.product-page.cardamom-theme p { color: #3a5c41; }
+
+.product-page.pepper-theme {
+    background-color: #1a1a1a; /* Dark */
+}
+.product-page.pepper-theme h2 { color: #ffffff; }
+.product-page.pepper-theme h3.subtitle { color: #d4af37; border-color: #d4af37; }
+.product-page.pepper-theme p { color: #d1d1d1; }
+
+.product-page.honey-theme {
+    background-color: #fcf6eb; /* Warm */
+}
+.product-page.honey-theme h2 { color: #7a4b11; }
+.product-page.honey-theme h3.subtitle { color: #b87333; border-color: #b87333; }
+.product-page.honey-theme p { color: #8a5a19; }
 
 /* Responsive section merged sequentially at EOF */
 
 /* About Us Section */
 .about-section {
-    min-height: 80vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 8rem 2rem 4rem 2rem;
+    justify-content: center; /* Center the container horizontally */
+    align-items: center; /* Center the container vertically */
+    padding: 4rem 2rem 4rem 2rem; /* Balanced top and bottom padding */
     position: relative;
     overflow: hidden;
+    background-color: #ffffff;
 }
 
 /* Background image overlay */
 .about-bg-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('asset/aboutus.png') no-repeat center center/cover;
-    z-index: -2;
+    display: none;
 }
 
 /* Darkening blending overlay for legibility */
 .about-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: -1;
+    display: none;
 }
 
-/* Redesigned content pane for 3D image background */
+/* Clean content pane without the box */
 #StoryCard {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-
-    /* 3D Glass Edge Highlighting */
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-
-    border-radius: 30px;
-    padding: 5rem 4rem;
-    max-width: 900px;
-    text-align: center;
-    color: var(--text-primary);
-
-    /* 3D Depth Shadows */
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.6),
-        /* Deep ambient shadow */
-        0 50px 100px rgba(0, 0, 0, 0.5),
-        /* Massive spread for floating effect */
-        inset 0 0 20px rgba(255, 255, 255, 0.05);
-    /* Inner thickness */
-
+    padding: 0; /* Removed extra spacing */
+    max-width: 1000px;
+    text-align: center; /* Reverted to center-aligned text */
     z-index: 10;
     opacity: 0;
-    transform: translateY(100vh) perspective(1000px);
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-                opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: translateY(40px); /* Smaller animation travel distance */
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #StoryCard.revealed {
     opacity: 1;
-    transform: translateY(0) perspective(1000px);
+    transform: translateY(0);
 }
 
-/* 3D Floating Interactive Hover */
+/* 3D Floating removed as it's no longer a box */
 #StoryCard:hover {
-    transform: translateY(-8px) perspective(1000px) rotateX(1deg) rotateY(-1deg);
-    box-shadow:
-        0 30px 60px rgba(0, 0, 0, 0.7),
-        0 60px 120px rgba(0, 0, 0, 0.6),
-        inset 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .about-title {
-    font-size: 4.5rem;
-    margin-bottom: 2rem;
-    color: var(--text-primary);
-    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+    font-size: 5rem;
+    margin-bottom: 0.5rem; /* Tighter space below title */
+    filter: drop-shadow(0px 4px 15px rgba(212, 175, 55, 0.4));
 }
 
 .about-text {
-    font-size: 1.25rem;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
+    font-size: 1.35rem;
+    line-height: 1.5; /* Tightened line height */
+    margin-bottom: 0.5rem; /* Minimal space between paragraphs */
     letter-spacing: 0.5px;
-    color: var(--text-sec);
+    font-weight: 500;
+}
+
+/* Shiny Text Effects ported from React Bits to pure CSS */
+.shiny-text-effect {
+    display: inline-block;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    background-size: 200% auto;
+    animation: shine-slide 4s linear infinite;
+}
+
+.title-shine {
+    /* Base: Gold, Shine: Bright White/Yellow */
+    background-image: linear-gradient(120deg, #D4AF37 0%, #D4AF37 35%, #FFFDE7 50%, #D4AF37 65%, #D4AF37 100%);
+}
+
+.body-shine {
+    /* Base: Darker Gold, Shine: Bright Gold */
+    background-image: linear-gradient(120deg, #b8860b 0%, #b8860b 35%, #FDE047 50%, #b8860b 65%, #b8860b 100%);
+    animation-duration: 5s; /* Slower shine for body text */
+}
+
+@keyframes shine-slide {
+    0% {
+        background-position: 150% center;
+    }
+    100% {
+        background-position: -50% center;
+    }
 }
 
 .about-highlights {
@@ -539,8 +475,22 @@ main {
     align-items: center;
     background: url('asset/frozen_bg.png') no-repeat center center/cover;
     background-attachment: fixed;
+    /* 8K HD Clarity Enhancements */
+    /* Clean, high-clarity filters without grain-inducing over-processing */
+    filter: brightness(1.02) contrast(1.02) saturate(1.05);
+    image-rendering: auto;
+    transform: translateZ(0);
+    will-change: transform, opacity;
     /* Continuously locked from Spices section */
     overflow: hidden;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Transition out frozen section as user moves to Contact */
+.frozen-collection.faded {
+    opacity: 0;
+    transform: scale(1.05) translateY(-20px);
+    pointer-events: none;
 }
 
 /* Frozen ambient fade removed to flawlessly match the Spices section structure exactly */
@@ -555,57 +505,111 @@ main {
     z-index: 0;
 }
 
-/* Top Half: Confirmed Dual-Showcase */
-.frozen-showcase-top {
+/* --- High-Fidelity Horizontal Carousel --- */
+.carousel-wrapper {
     position: relative;
-    z-index: 10;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 8rem;
+    max-width: 1000px; /* Centered, focused width */
+    height: 550px;
+    margin: 0 auto 6rem auto;
+    overflow: hidden; /* Contains the sliding elements */
+    z-index: 10;
 }
 
-.dual-showcase {
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 1rem;
+    z-index: 20;
+    pointer-events: none; /* Allows clicks to pass through empty space */
+}
+
+.nav-arrow {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: background 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 4rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nav-arrow:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+}
+
+.carousel-track-container {
     width: 100%;
-    max-width: 1200px;
+    height: 100%;
+    position: relative;
+    padding: 0 5rem; /* Space for the arrows */
+}
+
+.carousel-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Hide overflow of the sliding cards */
+    border-radius: 20px;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden; /* Hidden by default, JS handles visibility */
+}
+
+.carousel-slide.active {
+    visibility: visible;
 }
 
 .frozen-card {
-    perspective: 1200px;
-    cursor: pointer;
-    flex: 1;
-    min-width: 320px;
-    max-width: 500px;
+    width: 100%;
+    max-width: 500px; /* Sharp, contained size */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .glass-panel-frozen {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 20px;
     overflow: hidden;
     color: var(--text-primary);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
-    transform-style: preserve-3d;
-    transition: transform 0.6s ease-out, box-shadow 0.6s ease-out;
-}
-
-.frozen-card:hover .glass-panel-frozen {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+    height: 100%;
 }
 
 .frozen-img-container {
     width: 100%;
-    height: 380px;
-    /* Taller on flat layout to give photos room */
+    flex: 1; /* Take up available space */
     overflow: hidden;
 }
 
@@ -613,14 +617,7 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(100%) contrast(1.1);
-    transition: transform 0.8s ease-out, filter 0.8s ease-in-out;
-}
-
-.frozen-card:hover .frozen-img,
-.frozen-card.flipped .frozen-img {
-    filter: grayscale(0%) contrast(1);
-    transform: scale(1.05);
+    filter: contrast(1.1); /* Sharp, high-contrast */
 }
 
 .coming-soon-tag {
@@ -628,18 +625,16 @@ main {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 3px;
-    color: var(--accent);
-    margin: 2rem 0 0.5rem 0;
+    color: #D4AF37; /* Golden accent */
+    margin: 1.5rem 0 0.5rem 0;
     text-align: center;
-    opacity: 0.9;
     width: 100%;
 }
 
 .frozen-info {
-    padding: 2.5rem 2rem;
+    padding: 1.5rem 2rem 2.5rem 2rem;
     text-align: center;
-    background: rgba(0, 0, 0, 0.2);
-    /* Deepen contrast strictly for lower text box */
+    background: rgba(0, 0, 0, 0.4); /* High contrast backing for text */
 }
 
 .frozen-info h2 {
@@ -651,7 +646,7 @@ main {
 .frozen-info p {
     font-size: 1rem;
     color: var(--text-sec);
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 /* Bottom Half: Strategic Future Teaser */
@@ -863,10 +858,7 @@ main {
         flex-wrap: nowrap;
         gap: 0;
         height: 46px;
-        background: rgba(255, 255, 255, 0.18);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        background: transparent;
     }
 
     nav {
@@ -879,6 +871,14 @@ main {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        box-shadow: none;
+        padding-top: 0;
+        padding-bottom: 0;
+        border-radius: 0;
     }
 
     nav::-webkit-scrollbar { display: none; }
@@ -893,21 +893,17 @@ main {
     /* ── MAIN LOGO MOBILE ── */
     #MainLogo {
         width: 90vw;
-        top: 40%; /* Lowered deeply into the warmer orange glowing area */
+        top: 42%;
         left: 50%;
         transform: translate(-50%, -50%);
+        filter: none;
     }
 
-    /* Scrolled: logo sits above the navbar blur, left of HOME */
     #MainLogo.scrolled {
-        width: 100px; /* Large and clear */
-        top: -2px;
-        left: 10px;
+        width: 160px;
+        top: 15px;
+        left: 15px;
         transform: translate(0, 0);
-        opacity: 1;
-        mix-blend-mode: normal; /* Revoke multiply in navbar */
-        z-index: 200; /* well above navbar (100) and its blur */
-        filter: none;
     }
 
     /* Disable CSS :hover flip on mobile — use .flipped class only via JS tap */
@@ -984,7 +980,13 @@ main {
 @media(max-width: 480px) {
     #MainLogo {
         width: 85vw;
-        top: 42%; /* Lowered deeply into the orange band */
+        top: 44%;
+    }
+
+    #MainLogo.scrolled {
+        width: 140px;
+        top: 12px;
+        left: 12px;
     }
 
     .hero-bg-layer {
@@ -1000,4 +1002,36 @@ main {
     .navbar {
         padding: 0.6rem 0.5rem;
     }
+}
+
+/* Strategic Future Teaser Styles */
+.frozen-teaser-bottom {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+    margin: 6rem auto 0 auto;
+    padding: 0 2rem;
+}
+
+.future-headline {
+    color: #ffffff !important;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.future-text {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+/* Fix for other frozen texts that were black on dark background */
+.frozen-info h2, .frozen-info p, .coming-soon-tag {
+    color: #ffffff !important;
 }

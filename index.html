@@ -9,20 +9,79 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="PillNav.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
     <canvas id="particles-canvas"></canvas>
-    <img id="MainLogo" src="asset/logo2.png" alt="Ace Alps Logo">
+    <img id="MainLogo" src="asset/logo2_cropped.png" alt="Ace Alps Logo">
 
-    <header class="navbar">
-        <nav>
-            <a href="#">Home</a>
-            <a href="#about">About Us</a>
-            <a href="#products">Products</a>
-            <a href="#frozen">Frozen</a>
-            <a href="#contact">Contact</a>
+    <div class="pill-nav-container">
+        <nav class="pill-nav" aria-label="Primary">
+            <div class="pill-nav-items desktop-only" id="pill-nav-items">
+                <ul class="pill-list" role="menubar">
+                    <li role="none">
+                        <a role="menuitem" href="#" class="pill is-active">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Home</span>
+                                <span class="pill-label-hover" aria-hidden="true">Home</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="#about" class="pill">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">About Us</span>
+                                <span class="pill-label-hover" aria-hidden="true">About Us</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="#products" class="pill">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Products</span>
+                                <span class="pill-label-hover" aria-hidden="true">Products</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="#frozen" class="pill">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Frozen</span>
+                                <span class="pill-label-hover" aria-hidden="true">Frozen</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="#contact" class="pill">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Contact</span>
+                                <span class="pill-label-hover" aria-hidden="true">Contact</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <button class="mobile-menu-button mobile-only" id="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </nav>
-    </header>
+        <div class="mobile-menu-popover mobile-only" id="mobile-menu">
+            <ul class="mobile-menu-list">
+                <li><a href="#" class="mobile-menu-link is-active">Home</a></li>
+                <li><a href="#about" class="mobile-menu-link">About Us</a></li>
+                <li><a href="#products" class="mobile-menu-link">Products</a></li>
+                <li><a href="#frozen" class="mobile-menu-link">Frozen</a></li>
+                <li><a href="#contact" class="mobile-menu-link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
 
     <main>
         <section class="hero">
@@ -34,105 +93,114 @@
 
         <!-- About Us Section -->
         <section id="about" class="about-section">
-            <div class="about-bg-layer"></div>
-            <div id="StoryCard" class="about-content glass-panel-about">
-                <h1 class="about-title">Our Story</h1>
-                <p class="about-text">Ace Alps Ltd. brings you nature’s finest, carefully sourced from trusted farms and crafted for purity, flavour, and quality.</p>
-                <p class="about-text">From handpicked spices to nourishing blends and convenient frozen foods, every product reflects our commitment to authenticity and excellence—delivering rich taste in every bite.</p>
-
+            <div id="StoryCard" class="about-content">
+                <h1 class="about-title"><span class="shiny-text-effect title-shine">Story About Us</span></h1>
+                <p class="about-text"><span class="shiny-text-effect body-shine">Ace Alps Ltd. brings you nature’s finest, carefully sourced from trusted farms and crafted for purity, flavour, and quality. Our journey began with a simple belief: the earth provides everything we need to create truly magnificent culinary experiences.</span></p>
+                <p class="about-text"><span class="shiny-text-effect body-shine">From handpicked spices to nourishing blends, every product reflects our commitment to authenticity and excellence. We travel to the heart of the mountains, working directly with generations of skilled farmers to ensure the soul of every spice remains untouched.</span></p>
+                <p class="about-text"><span class="shiny-text-effect body-shine">Expanding our vision, we have meticulously crafted a heritage frozen foods collection. By merging centuries-old preservation techniques with modern cold-chain precision, our frozen range—including specialized spice blends, organic artisanal veg stews, and traditional savory snacks—ensures that every bite captures the peak of freshness right at your table.</span></p>
+                <p class="about-text"><span class="shiny-text-effect body-shine">Our mission is not just to provide ingredients, but to inspire your kitchen. We believe that every meal is an opportunity to forge connections, celebrate heritage, and taste the uncompromised brilliance of the natural world.</span></p>
             </div>
         </section>
 
-        <!-- Product Suite Section -->
-        <section id="products" class="product-suite">
+        <!-- Product Showcase (Distinct Pages) -->
+        <div id="products">
+            <!-- Cardamom Page -->
+            <section class="product-page cardamom-theme">
+                <div class="product-split">
+                    <div class="product-image-side">
+                        <div class="product-image-container">
+                            <img src="asset/card.jpeg" alt="Cardamom">
+                        </div>
+                    </div>
+                    <div class="product-content-side">
+                        <h2>Cardamom</h2>
+                        <h3 class="subtitle">Queen of Spices</h3>
+                        <p>Sourced from select farms where climate and soil create pods with naturally rich aroma and vibrant flavor. Brings freshness and purity to every dish.</p>
+                    </div>
+                </div>
+            </section>
             
-            <div class="product-grid">
-                <!-- Cardamom -->
-                <div class="product-card" data-target-theme="cardamom">
-                    <div class="card-inner">
-                        <div class="card-side card-front">
-                            <img src="asset/card.jpeg" alt="Cardamom - Queen of Spices" class="product-img">
-                        </div>
-                        <div class="card-side card-back glass-panel">
-                            <h2>Cardamom</h2>
-                            <h3 class="subtitle">Queen of Spices</h3>
-                            <div class="product-story">
-                                <p>Sourced from select farms where climate and soil create pods with naturally rich aroma and vibrant flavor. Brings freshness and purity to every dish.</p>
-                            </div>
+            <!-- Black Pepper Page -->
+            <section class="product-page pepper-theme">
+                <div class="product-split">
+                    <div class="product-image-side">
+                        <div class="product-image-container">
+                            <img src="asset/blackpep.jpeg" alt="Black Pepper">
                         </div>
                     </div>
+                    <div class="product-content-side">
+                        <h2>Black Pepper</h2>
+                        <h3 class="subtitle">Black Gold</h3>
+                        <p>Treasured for centuries for bold flavor and natural heat. Chosen for exceptional quality, adding depth and character to every dish.</p>
+                    </div>
                 </div>
+            </section>
 
-                <!-- Black Pepper -->
-                <div class="product-card" data-target-theme="pepper">
-                    <div class="card-inner">
-                        <div class="card-side card-front">
-                            <img src="asset/blackpep.jpeg" alt="Black Pepper - Black Gold" class="product-img">
-                        </div>
-                        <div class="card-side card-back glass-panel">
-                            <h2>Black Pepper</h2>
-                            <h3 class="subtitle">Black Gold</h3>
-                            <div class="product-story">
-                                <p>Treasured for centuries for bold flavor and natural heat. Chosen for exceptional quality, adding depth and character to every dish.</p>
-                            </div>
+            <!-- Dry Fruit Mix Page -->
+            <section class="product-page honey-theme">
+                <div class="product-split">
+                    <div class="product-image-side">
+                        <div class="product-image-container">
+                            <img src="honey_nuts.png" alt="Dry Fruit Mix in Honey">
                         </div>
                     </div>
-                </div>
-
-                <!-- Dry Fruit Mix in Honey -->
-                <div class="product-card" data-target-theme="honey">
-                    <div class="card-inner">
-                        <div class="card-side card-front">
-                            <img src="honey_nuts.png" alt="Dry Fruit Mix in Honey" class="product-img">
-                        </div>
-                        <div class="card-side card-back glass-panel">
-                            <h2>Dry Fruit Mix</h2>
-                            <h3 class="subtitle">In Honey</h3>
-                            <div class="product-story">
-                                <p>Nourishing premium blends in artisanal glass jars.</p>
-                            </div>
-                        </div>
+                    <div class="product-content-side">
+                        <h2>Dry Fruit Mix</h2>
+                        <h3 class="subtitle">In Honey</h3>
+                        <p>Nourishing premium blends packed in artisanal glass jars. A perfect harmony of carefully roasted nuts suspended in pure, golden honey.</p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
         <!-- Heritage Frozen Collection (Stacked Layout) -->
         <section id="frozen" class="frozen-collection">
             
 
-            <!-- Top: The Confirmed Dual-Showcase -->
-            <div class="frozen-showcase-top">
-                <div class="dual-showcase">
-                    
-                    <!-- Soft Chapati -->
-                    <div class="frozen-card">
-                        <div class="frozen-card-inner glass-panel-frozen">
-                            <h4 class="coming-soon-tag">COMING SOON ...</h4>
-                            <div class="frozen-img-container">
-                                <img src="asset/chapati.png" alt="Ace Alps Authentic South Indian Chapathi" class="frozen-img" />
+            <!-- High-Fidelity Horizontal Carousel -->
+            <div class="carousel-wrapper">
+                <!-- Static Alpine Background -->
+                <div class="carousel-bg"></div>
+                
+                <div class="carousel-nav">
+                    <button id="carousel-left" class="nav-arrow" aria-label="Previous">❮</button>
+                    <button id="carousel-right" class="nav-arrow" aria-label="Next">❯</button>
+                </div>
+                
+                <div class="carousel-track-container">
+                    <div class="carousel-track" id="frozen-track">
+                        <!-- Slide 1: Chapathi -->
+                        <div class="carousel-slide active" data-index="0">
+                            <div class="frozen-card">
+                                <div class="frozen-card-inner glass-panel-frozen">
+                                    <h4 class="coming-soon-tag">COMING SOON ...</h4>
+                                    <div class="frozen-img-container">
+                                        <img src="asset/chapati.png" alt="Authentic South Indian Chapathi" class="frozen-img" />
+                                    </div>
+                                    <div class="frozen-info">
+                                        <h2>Authentic South Indian Chapathi</h2>
+                                        <p>Perfectly rolled, half-cooked frozen chapatis ready to puff and serve.</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="frozen-info">
-                                <h2>Authentic South Indian Chapathi</h2>
-                                <p>Perfectly rolled, half-cooked frozen chapatis ready to puff and serve.</p>
+                        </div>
+
+                        <!-- Slide 2: Boli -->
+                        <div class="carousel-slide" data-index="1">
+                            <div class="frozen-card">
+                                <div class="frozen-card-inner glass-panel-frozen">
+                                    <h4 class="coming-soon-tag">COMING SOON ...</h4>
+                                    <div class="frozen-img-container">
+                                        <img src="asset/boli.png" alt="Traditional Boli (Malabar)" class="frozen-img" />
+                                    </div>
+                                    <div class="frozen-info">
+                                        <h2>Traditional Boli (Malabar)</h2>
+                                        <p>Authentic, golden-sweet flatbread preserved perfectly for premium taste.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Traditional Boli -->
-                    <div class="frozen-card">
-                        <div class="frozen-card-inner glass-panel-frozen">
-                            <h4 class="coming-soon-tag">COMING SOON ...</h4>
-                            <div class="frozen-img-container">
-                                <img src="asset/boli.png" alt="Traditional Boli (Malabar)" class="frozen-img" />
-                            </div>
-                            <div class="frozen-info">
-                                <h2>Traditional Boli (Malabar)</h2>
-                                <p>Authentic, golden-sweet flatbread preserved perfectly for premium taste.</p>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
