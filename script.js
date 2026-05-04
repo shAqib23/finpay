@@ -337,6 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // --- Vanilla JS CardSwap Logic ---
         const swapCards = Array.from(document.querySelectorAll('.swap-card'));
         const container = document.getElementById('frozen-card-swap');
+        const infoItems = Array.from(document.querySelectorAll('.swap-info-item'));
         
         if (swapCards.length > 0 && container) {
             const cardDistance = 60;
@@ -389,9 +390,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const front = order[0];
                 const rest = order.slice(1);
+                const nextFront = rest[0]; // The card that will be on top
                 const elFront = swapCards[front];
                 
                 const tl = gsap.timeline({
+                    onStart: () => {
+                        // Sync text change with the start of the swap
+                        infoItems.forEach(item => item.classList.remove('active'));
+                        const nextInfo = infoItems.find(item => item.getAttribute('data-swap-index') == swapCards[nextFront].getAttribute('data-swap-index'));
+                        if (nextInfo) nextInfo.classList.add('active');
+                    },
                     onComplete: () => {
                         order = [...rest, front];
                         isSwapping = false;
