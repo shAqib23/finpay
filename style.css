@@ -1135,3 +1135,82 @@ main {
 .frozen-info h2, .frozen-info p, .coming-soon-tag {
     color: #ffffff !important;
 }
+
+/* --- Ultimate Mobile Responsiveness Fixes --- */
+@media(max-width: 900px) {
+    /* Products Section */
+    .product-split, .product-split.reverse-split {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 4rem 2rem;
+        text-align: center;
+    }
+    
+    .product-content-side {
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .product-content-side h2 {
+        font-size: 2.5rem;
+    }
+
+    .product-content-side p {
+        font-size: 1rem;
+    }
+    
+    /* Frozen Section Stack */
+    .card-swap-wrapper {
+        flex-direction: column;
+        gap: 2rem;
+        height: auto;
+        padding-top: 2rem;
+        margin-bottom: 3rem;
+    }
+    
+    .card-swap-container {
+        width: 100%;
+        max-width: 320px;
+        height: 400px;
+        margin: 0 auto;
+    }
+    
+    .swap-info-container {
+        width: 100%;
+        min-height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .swap-info-item {
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        padding: 0 1rem;
+        text-align: center;
+    }
+    
+    .swap-info-item.active {
+        transform: translate(-50%, -50%);
+    }
+    
+    .swap-info-item h2 {
+        font-size: 2.2rem;
+    }
+    
+    .swap-info-item p {
+        font-size: 1.1rem;
+        margin: 0 auto;
+    }
+    
+    /* Golden Frame Overflow Fix */
+    .golden-frame {
+        top: 1rem;
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem;
+    }
+}
