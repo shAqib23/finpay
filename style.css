@@ -191,7 +191,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('asset/hero_latest.jpg') no-repeat center center/cover;
+    background: url('asset/hero_fixed.jpg') no-repeat center center/cover;
     background-attachment: fixed; /* Explicitly fixed as requested */
     z-index: 1; /* Set to 1 as requested */
     /* 8K Quality Enhancements */
