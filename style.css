@@ -947,7 +947,9 @@ main {
 @media(max-width: 768px) {
 
     .hero-bg-layer {
-        background-position: 25% center !important; /* Forces the clear sunset sky into view, pushing the right-side mountain mostly off-screen */
+        background-image: url('asset/hero_mobile.jpg') !important;
+        background-position: center !important;
+        background-size: cover !important;
     }
 
     /* ── NAVBAR MOBILE ── */
@@ -992,8 +994,9 @@ main {
 
     /* ── MAIN LOGO MOBILE ── */
     #MainLogo {
-        width: 90vw;
-        top: 42%;
+        width: 60vw;
+        max-width: 250px;
+        top: 25%;
         left: 50%;
         transform: translate(-50%, -50%);
         filter: none;
@@ -1079,8 +1082,9 @@ main {
 /* Extra-small phones (< 480px) */
 @media(max-width: 480px) {
     #MainLogo {
-        width: 85vw;
-        top: 44%;
+        width: 65vw;
+        max-width: 200px;
+        top: 22%;
     }
 
     #MainLogo.scrolled {
@@ -1090,7 +1094,9 @@ main {
     }
 
     .hero-bg-layer {
-        background-position: 25% center !important; /* Perfect framing for the clear sky on extra small phones */
+        background-image: url('asset/hero_mobile.jpg') !important;
+        background-position: center !important;
+        background-size: cover !important;
     }
 
     nav a {
