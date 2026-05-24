@@ -444,7 +444,7 @@ main {
     pointer-events: none;
     z-index: 2; /* Position behind content, but above section background */
     box-shadow: 0 0 15px rgba(30, 63, 32, 0.15);
-    background-color: #f9f5eb; /* Perfectly matches the warm vintage cream color theme of the hero page */
+    background-color: #ffffff; /* Reverted to solid clean white as requested */
 }
 
 .golden-frame::before {
