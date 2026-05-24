@@ -417,10 +417,10 @@ main {
     display: flex;
     justify-content: center; /* Center the container horizontally */
     align-items: center; /* Center the container vertically */
-    padding: 4rem 2rem 4rem 2rem; /* Balanced top and bottom padding */
+    padding: 6rem 4rem; /* Balanced padding for elegant margins */
     position: relative;
     overflow: hidden;
-    background-color: #ffffff;
+    background-color: #faf6ee; /* Beautiful warm background color from mockup */
 }
 
 /* Background image overlay */
@@ -433,18 +433,18 @@ main {
     display: none;
 }
 
-/* Matte Forest Green Vintage Frame - Coordianted Brand Version */
+/* Matte Forest Green Vintage Frame - Coordinated Brand Version */
 .golden-frame {
     position: absolute;
-    top: 2rem;
-    left: 2rem;
-    right: 2rem;
-    bottom: 2rem;
-    border: 2px solid #1e3f20; /* Changed to brand forest green */
+    top: 2.5rem;
+    left: 2.5rem;
+    right: 2.5rem;
+    bottom: 2.5rem;
+    border: 2px solid #1e3f20; /* Brand forest green */
     pointer-events: none;
     z-index: 2; /* Position behind content, but above section background */
-    box-shadow: 0 0 15px rgba(30, 63, 32, 0.15);
-    background-color: #ffffff; /* Reverted to solid clean white as requested */
+    box-shadow: 0 12px 40px rgba(30, 63, 32, 0.1);
+    background: url('asset/hero_latest.webp') no-repeat center center/cover; /* Beautiful sketch illustration inside frame */
 }
 
 .golden-frame::before {
@@ -533,9 +533,9 @@ main {
 /* Clean content pane without the box */
 #StoryCard {
     position: relative; /* Essential for z-index layering above frame background */
-    padding: 0; /* Removed extra spacing */
-    max-width: 1000px;
-    text-align: center; /* Reverted to center-aligned text */
+    padding: 4rem; /* Soft padding inside the frame */
+    max-width: 1100px;
+    text-align: center; /* Center-aligned text */
     z-index: 10;
     opacity: 0;
     transform: translateY(40px); /* Smaller animation travel distance */
@@ -548,22 +548,34 @@ main {
     transform: translateY(0);
 }
 
-/* 3D Floating removed as it's no longer a box */
-#StoryCard:hover {
+.about-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    margin-bottom: 0.5rem; /* Tighter space below title */
+    filter: drop-shadow(0px 4px 12px rgba(30, 63, 32, 0.15)); /* Soft shadow */
 }
 
-.about-title {
-    font-size: 5rem;
-    margin-bottom: 0.5rem; /* Tighter space below title */
-    filter: drop-shadow(0px 4px 15px rgba(30, 63, 32, 0.25)); /* Adjusted to soft green shadow */
+.about-divider, .about-divider-bottom {
+    margin: 1rem auto 2rem auto;
+    font-size: 1.25rem;
+    color: #1e3f20;
+    opacity: 0.85;
+    text-align: center;
+}
+
+.about-divider-bottom {
+    margin: 2rem auto 1rem auto;
 }
 
 .about-text {
-    font-size: 1.35rem;
-    line-height: 1.5; /* Tightened line height */
-    margin-bottom: 0.5rem; /* Minimal space between paragraphs */
+    font-size: 1.2rem;
+    line-height: 1.8; /* Editorial serif spacing */
+    margin-bottom: 1.5rem; /* Minimal space between paragraphs */
     letter-spacing: 0.5px;
     font-weight: 500;
+    max-width: 700px; /* Constrains text width perfectly to fit empty center space of illustration */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Shiny Text Effects ported from React Bits to pure CSS */
@@ -1102,11 +1114,11 @@ main {
 
     /* Compress massive About Us padding */
     .about-section {
-        padding: 6rem 1rem 3rem 1rem;
+        padding: 4rem 1.5rem;
     }
 
-    .glass-panel-about {
-        padding: 3rem 1.5rem;
+    #StoryCard {
+        padding: 2rem 1rem !important;
     }
 
     .about-title {
@@ -1115,6 +1127,7 @@ main {
 
     .about-text {
         font-size: 1.05rem;
+        line-height: 1.7;
     }
 
     .about-highlights {
