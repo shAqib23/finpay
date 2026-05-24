@@ -553,7 +553,7 @@ main {
 .about-title {
     font-size: 5rem;
     margin-bottom: 0.5rem; /* Tighter space below title */
-    filter: drop-shadow(0px 4px 15px rgba(212, 175, 55, 0.4));
+    filter: drop-shadow(0px 4px 15px rgba(30, 63, 32, 0.25)); /* Adjusted to soft green shadow */
 }
 
 .about-text {
@@ -576,13 +576,13 @@ main {
 }
 
 .title-shine {
-    /* Base: Gold, Shine: Bright White/Yellow */
-    background-image: linear-gradient(120deg, #D4AF37 0%, #D4AF37 35%, #FFFDE7 50%, #D4AF37 65%, #D4AF37 100%);
+    /* Base: Matte Forest Green (#1e3f20), Shine: Matte Sage (#608c66) */
+    background-image: linear-gradient(120deg, #1e3f20 0%, #1e3f20 35%, #608c66 50%, #1e3f20 65%, #1e3f20 100%);
 }
 
 .body-shine {
-    /* Base: Darker Gold, Shine: Bright Gold */
-    background-image: linear-gradient(120deg, #b8860b 0%, #b8860b 35%, #FDE047 50%, #b8860b 65%, #b8860b 100%);
+    /* Base: Dark Legible Green (#2b3a2b), Shine: Medium Forest Green (#485c48) */
+    background-image: linear-gradient(120deg, #2b3a2b 0%, #2b3a2b 35%, #485c48 50%, #2b3a2b 65%, #2b3a2b 100%);
     animation-duration: 5s; /* Slower shine for body text */
 }
 
