@@ -161,19 +161,13 @@ h3,
     color: #1e3f20;
 }
 
-.hero-divider-ornament {
-    margin: 8px 0 16px 0;
-    font-size: 0.95rem;
-    opacity: 0.8;
-    color: #b38f53; /* Elegant accent gold color */
-}
-
 .hero-tagline {
     font-size: 1.25rem;
     line-height: 1.7;
     font-style: italic;
     opacity: 0.95;
     color: #2b3a2b;
+    margin-top: 10px; /* Reduced vertical space under BUILT DIFFERENT */
 }
 
 .hero-tagline p {
@@ -1172,6 +1166,7 @@ main {
     .hero-tagline {
         font-size: 0.95rem;
         line-height: 1.5;
+        margin-top: 8px; /* Sits tightly below BUILT DIFFERENT in mobile view */
     }
 
     #MainLogo.scrolled {
