@@ -368,9 +368,11 @@ main {
 }
 
 .product-content-side h2 {
+    font-family: 'Brittany Signature', cursive;
     font-size: 5rem;
     margin-bottom: 0.5rem;
     line-height: 1.1;
+    font-weight: normal;
 }
 
 .product-content-side h3.subtitle {
