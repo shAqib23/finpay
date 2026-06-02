@@ -368,7 +368,7 @@ main {
 }
 
 .product-content-side h2 {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Great Vibes', cursive !important;
     font-size: 6rem;
     margin-bottom: 0.5rem;
     line-height: 1.1;
