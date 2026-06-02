@@ -1,5 +1,3 @@
-@import url('https://db.onlinewebfonts.com/c/b4d584ed0e53ba94a815f817690faab2?family=Brittany+Signature');
-
 :root {
     /* Default Theme */
     --bg-color: #f8f9fa;
@@ -370,8 +368,8 @@ main {
 }
 
 .product-content-side h2 {
-    font-family: 'Brittany Signature', cursive;
-    font-size: 5rem;
+    font-family: 'Great Vibes', cursive;
+    font-size: 6rem;
     margin-bottom: 0.5rem;
     line-height: 1.1;
     font-weight: normal;
